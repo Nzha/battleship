@@ -12,7 +12,7 @@ const Ship = (length) => {
 const Gameboard = (row, col) => {
   const board = Array.from(Array(row), () => new Array(col));
 
-  const placeShip = (ship, x, y, axis = 'horizontal') => {
+  const placeShip = (ship, [x, y], axis = 'horizontal') => {
     if (x < 0 || x > 10 || y < 0 || y > 10) return 'Move out of bounds';
     if (axis === 'horizontal') {
       for (let i = y; i < y + ship.length; i++) {
@@ -30,10 +30,10 @@ const Gameboard = (row, col) => {
   return { board, placeShip };
 };
 
-const board = Gameboard(10, 10);
+const myFirstBoard = Gameboard(10, 10);
 const ship = Ship(4);
-board.placeShip(ship, 0, 0, 'vertical');
+myFirstBoard.placeShip(ship, [0, 6], 'horizontal');
 
-console.log(board.board);
+console.log(myFirstBoard.board);
 
 export default Gameboard;
