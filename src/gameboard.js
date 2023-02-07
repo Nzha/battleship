@@ -9,30 +9,39 @@ const Ship = (length) => {
   return { length, health, sunk, hit };
 };
 
-const Gameboard = (row, col) => {
-  const board = Array.from(Array(row), () => new Array(col));
+const Gameboard = (size) => {
+  const board = Array.from(Array(size), () => new Array(size));
 
-  const placeShip = (ship, [x, y], axis = 'horizontal') => {
-    if (x < 0 || x > 10 || y < 0 || y > 10) return 'Move out of bounds';
+  const placeShip = (ship, coords, axis = 'horizontal') => {
+    if (coords[0] < 0 || coords[0] > size || coords[1] < 0 || coords[1] > size)
+      return 'Move out of bounds';
     if (axis === 'horizontal') {
-      for (let i = y; i < y + ship.length; i++) {
-        if (y + ship.length > 10) return;
-        board[x][i] = 1;
+      for (let i = coords[1]; i < coords[1] + ship.length; i++) {
+        if (coords[1] + ship.length > size) return;
+        if (board[coords[0]][i] === 1)
+          return 'There is already a ship in this location';
+        board[coords[0]][i] = 1;
       }
     } else if (axis === 'vertical') {
-      for (let j = x; j < x + ship.length; j++) {
-        if (x + ship.length > 10) return;
-        board[j][y] = 1;
+      for (let j = coords[0]; j < coords[0] + ship.length; j++) {
+        if (coords[0] + ship.length > size) return;
+        if (board[j][coords[1]] === 1)
+          return 'There is already a ship in this location';
+        board[j][coords[1]] = 1;
       }
     }
   };
 
-  return { board, placeShip };
+  const receiveAttack = () => {};
+
+  return { board, placeShip, receiveAttack };
 };
 
-const myFirstBoard = Gameboard(10, 10);
+const myFirstBoard = Gameboard(10);
 const ship = Ship(4);
-myFirstBoard.placeShip(ship, [0, 6], 'horizontal');
+const ship2 = Ship(2);
+myFirstBoard.placeShip(ship, [5, 0]);
+myFirstBoard.placeShip(ship2, [6, 0]);
 
 console.log(myFirstBoard.board);
 
