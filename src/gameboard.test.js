@@ -3,19 +3,19 @@ import Ship from './ship';
 
 test('Place ship horizontally on board', () => {
   const myFirstBoard = Gameboard(10);
-  const ship = Ship(2);
+  const ship = Ship(2, 'ship');
   myFirstBoard.placeShip(ship, [0, 0]);
-  expect(myFirstBoard.board[0][0]).toBe(1);
-  expect(myFirstBoard.board[0][1]).toBe(1);
+  expect(myFirstBoard.board[0][0]).toBe('ship');
+  expect(myFirstBoard.board[0][1]).toBe('ship');
   expect(myFirstBoard.board[0][2]).toBeUndefined();
 });
 
 test('Place ship vertically on board', () => {
   const myFirstBoard = Gameboard(10);
-  const ship = Ship(2);
+  const ship = Ship(2, 'ship');
   myFirstBoard.placeShip(ship, [0, 0], 'vertical');
-  expect(myFirstBoard.board[0][0]).toBe(1);
-  expect(myFirstBoard.board[1][0]).toBe(1);
+  expect(myFirstBoard.board[0][0]).toBe('ship');
+  expect(myFirstBoard.board[1][0]).toBe('ship');
   expect(myFirstBoard.board[2][0]).toBeUndefined();
 });
 
@@ -31,8 +31,8 @@ test('Prevent ship from being place out of bounds', () => {
 
 test('Prevent ship from being place on another ship', () => {
   const myFirstBoard = Gameboard(10);
-  const ship = Ship(4);
-  const ship2 = Ship(2);
+  const ship = Ship(4, 'ship');
+  const ship2 = Ship(2, 'ship2');
   myFirstBoard.placeShip(ship, [0, 0]);
   expect(myFirstBoard.placeShip(ship2, [0, 0])).toBe('There is already a ship in this location')
 });
