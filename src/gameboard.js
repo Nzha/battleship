@@ -5,11 +5,12 @@ const ships = [];
 const Ship = (name, length) => {
   let health = length;
   let sunk = false;
+  let player = name.includes('1') ? 'Player1' : 'Player2';
   const hit = function () {
     this.health -= 1;
     if (this.health <= 0) this.sunk = true;
   };
-  return { name, length, health, sunk, hit };
+  return { name, length, health, player, sunk, hit };
 };
 
 const Gameboard = (size) => {
@@ -36,36 +37,45 @@ const Gameboard = (size) => {
   };
 
   const receiveAttack = (coords) => {
-    let pos = board[coords[0]][coords[1]];
+    const [x, y] = coords;
+    const pos = board[x][y];
     if (pos && pos.includes('X')) return 'Position already shot';
     if (pos) {
       const ship = ships.find((el) => el.name === pos);
       ship.hit();
-      board[coords[0]][coords[1]] = `${ship.name}X`;
+      board[x][y] = `${ship.name}X`;
       return `${ship.name} hit`;
     } else {
-      board[coords[0]][coords[1]] = 'X';
+      board[x][y] = 'X';
       return 'missed shot';
     }
   };
 
   const gameOver = () => {
-    console.log(ships);
-  }
+    const shipsSunkPlayer1 = ships.filter(
+      (el) => el.player === 'Player1' && el.sunk === true
+    );
+    const shipsSunkPlayer2 = ships.filter(
+      (el) => el.player === 'Player2' && el.sunk === true
+    );
+    console.log(shipsSunkPlayer1);
+    if (shipsSunkPlayer1.length === ships.length / 2) return 'Game Over';
+  };
 
   return { board, placeShip, receiveAttack };
 };
 
 const myFirstBoard = Gameboard(10);
 const battleship1 = Ship('battleship1', 4);
-const patrol1 = Ship('patrol1', 2);
-ships.push(battleship1, patrol1);
+const patrol2 = Ship('patrol2', 2);
+ships.push(battleship1, patrol2);
 myFirstBoard.placeShip(battleship1, [5, 0]);
-myFirstBoard.placeShip(patrol1, [6, 0]);
+myFirstBoard.placeShip(patrol2, [6, 0]);
 console.log(myFirstBoard.receiveAttack([6, 0]));
 console.log(myFirstBoard.receiveAttack([6, 1]));
-patrol1;
-ships
+patrol2;
+ships;
+// console.log(myFirstBoard.gameOver());
 
 console.log(myFirstBoard.board);
 
