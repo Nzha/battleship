@@ -1,4 +1,4 @@
-import Gameboard from "./gameboard";
+import Gameboard from './gameboard';
 import Ship from './ship';
 
 test('Place ship horizontally on board', () => {
@@ -24,9 +24,7 @@ test('Prevent ship from being place out of bounds', () => {
   const myFirstBoard = Gameboard(10);
   const ship = Ship(4);
   myFirstBoard.placeShip(ship, [0, 7]);
-  expect(myFirstBoard.board).toEqual(
-    expect.not.arrayContaining(notExpected),
-  );
+  expect(myFirstBoard.board).toEqual(expect.not.arrayContaining(notExpected));
 });
 
 test('Prevent ship from being place on another ship', () => {
@@ -34,5 +32,23 @@ test('Prevent ship from being place on another ship', () => {
   const ship = Ship(4, 'ship');
   const ship2 = Ship(2, 'ship2');
   myFirstBoard.placeShip(ship, [0, 0]);
-  expect(myFirstBoard.placeShip(ship2, [0, 0])).toBe('There is already a ship in this location')
+  expect(myFirstBoard.placeShip(ship2, [0, 0])).toBe(
+    'There is already a ship in this location'
+  );
+});
+
+test('Hit ship', () => {
+  const myFirstBoard = Gameboard(10);
+  const patrol1 = Ship(2, 'patrol1');
+  myFirstBoard.placeShip(patrol1, [6, 0]);
+  expect(myFirstBoard.receiveAttack([6, 0])).toBe('patrol1 hit');
+  expect(myFirstBoard.receiveAttack([6, 1])).toBe('patrol1 hit');
+});
+
+test('Prevent a position from being shot twice', () => {
+  const myFirstBoard = Gameboard(10);
+  const patrol1 = Ship(2, 'patrol1');
+  myFirstBoard.placeShip(patrol1, [6, 0]);
+  myFirstBoard.receiveAttack([6, 0]);
+  expect(myFirstBoard.receiveAttack([6, 0])).toBe('Position already shot');
 });

@@ -47,6 +47,7 @@ const Gameboard = (size) => {
       board[coords[0]][coords[1]] = 'X';
       return 'missed shot';
     }
+
   };
 
   return { board, placeShip, receiveAttack };
