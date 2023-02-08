@@ -2,14 +2,14 @@
 
 const ships = [];
 
-const Ship = (length, name) => {
+const Ship = (name, length) => {
   let health = length;
   let sunk = false;
   const hit = function () {
     this.health -= 1;
     if (this.health <= 0) this.sunk = true;
   };
-  return { length, name, health, sunk, hit };
+  return { name, length, health, sunk, hit };
 };
 
 const Gameboard = (size) => {
@@ -49,18 +49,23 @@ const Gameboard = (size) => {
     }
   };
 
+  const gameOver = () => {
+    console.log(ships);
+  }
+
   return { board, placeShip, receiveAttack };
 };
 
 const myFirstBoard = Gameboard(10);
-const battleship1 = Ship(4, 'battleship1');
-const patrol1 = Ship(2, 'patrol1');
+const battleship1 = Ship('battleship1', 4);
+const patrol1 = Ship('patrol1', 2);
 ships.push(battleship1, patrol1);
 myFirstBoard.placeShip(battleship1, [5, 0]);
 myFirstBoard.placeShip(patrol1, [6, 0]);
 console.log(myFirstBoard.receiveAttack([6, 0]));
-console.log(myFirstBoard.receiveAttack([6, 5]));
+console.log(myFirstBoard.receiveAttack([6, 1]));
 patrol1;
+ships
 
 console.log(myFirstBoard.board);
 
