@@ -36,10 +36,10 @@ const Gameboard = (size) => {
   };
 
   const receiveAttack = (coords) => {
-    if (board[coords[0]][coords[1]].includes('X'))
-      return 'Position already shot';
-    if (board[coords[0]][coords[1]] !== undefined) {
-      const ship = ships.find((el) => el.name === board[coords[0]][coords[1]]);
+    let pos = board[coords[0]][coords[1]];
+    if (pos && pos.includes('X')) return 'Position already shot';
+    if (pos) {
+      const ship = ships.find((el) => el.name === pos);
       ship.hit();
       board[coords[0]][coords[1]] = `${ship.name}X`;
       return `${ship.name} hit`;
@@ -47,7 +47,6 @@ const Gameboard = (size) => {
       board[coords[0]][coords[1]] = 'X';
       return 'missed shot';
     }
-
   };
 
   return { board, placeShip, receiveAttack };
@@ -60,7 +59,7 @@ ships.push(battleship1, patrol1);
 myFirstBoard.placeShip(battleship1, [5, 0]);
 myFirstBoard.placeShip(patrol1, [6, 0]);
 console.log(myFirstBoard.receiveAttack([6, 0]));
-console.log(myFirstBoard.receiveAttack([6, 1]));
+console.log(myFirstBoard.receiveAttack([6, 5]));
 patrol1;
 
 console.log(myFirstBoard.board);

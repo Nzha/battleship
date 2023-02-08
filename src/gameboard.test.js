@@ -45,6 +45,11 @@ test('Hit ship', () => {
   expect(myFirstBoard.receiveAttack([6, 1])).toBe('patrol1 hit');
 });
 
+test('Hit miss', () => {
+  const myFirstBoard = Gameboard(10);
+  expect(myFirstBoard.receiveAttack([6, 1])).toBe('missed shot');
+});
+
 test('Prevent a position from being shot twice', () => {
   const myFirstBoard = Gameboard(10);
   const patrol1 = Ship(2, 'patrol1');
