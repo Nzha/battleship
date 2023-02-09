@@ -65,7 +65,10 @@ const Gameboard = (size) => {
   const receiveAttack = (coords) => {
     const [x, y] = coords;
     const pos = board[x][y];
+
     if (pos && pos.includes('X')) return 'Position already shot';
+
+    // Add 'X' to all positions shot
     if (pos) {
       const ship = ships.find((el) => el.name === pos);
       ship.hit();
@@ -85,11 +88,13 @@ const Gameboard = (size) => {
       (el) => el.player === 'Player2' && el.sunk === true
     ).length;
     const totalShips = ships.length;
+
     if (
       player1SunkCount === totalShips / 2 ||
       player2SunkCount === totalShips / 2
-    )
+    ) {
       return 'Game Over';
+    }
   };
 
   return { board, placeShip, receiveAttack, gameOver };
