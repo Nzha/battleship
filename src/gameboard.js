@@ -13,6 +13,32 @@ const Ship = (name, length) => {
   return { name, length, health, player, sunk, hit };
 };
 
+const Player = (name) => {
+  return { name };
+};
+
+const computer = (() => {
+  const attack = (gameboard = myFirstBoard) => {
+    let board = gameboard.board;
+
+    // Save all positions not already attacked
+    let posNotShot = [];
+    for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j < board[i].length; j++) {
+        let pos = board[i][j];
+        if (!pos || (pos && !pos.includes('X'))) {
+          posNotShot.push([i, j]);
+        }
+      }
+    }
+    // Randomly pick one and attack
+    let randomIndex = Math.floor(Math.random() * posNotShot.length);
+    let randomPosNotShot = posNotShot[randomIndex];
+    return gameboard.receiveAttack(randomPosNotShot);
+  };
+  return { attack };
+})();
+
 const Gameboard = (size) => {
   const board = Array.from(Array(size), () => new Array(size));
 
@@ -77,10 +103,12 @@ myFirstBoard.placeShip(battleship1, [5, 0]);
 myFirstBoard.placeShip(patrol2, [6, 0]);
 console.log(myFirstBoard.receiveAttack([6, 0]));
 console.log(myFirstBoard.receiveAttack([6, 1]));
-patrol2;
-ships;
+// patrol2;
+// ships;
 // console.log(myFirstBoard.gameOver());
 
 console.log(myFirstBoard.board);
+
+console.log(computer.attack());
 
 export default Gameboard;
