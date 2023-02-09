@@ -52,17 +52,21 @@ const Gameboard = (size) => {
   };
 
   const gameOver = () => {
-    const shipsSunkPlayer1 = ships.filter(
+    const player1SunkCount = ships.filter(
       (el) => el.player === 'Player1' && el.sunk === true
-    );
-    const shipsSunkPlayer2 = ships.filter(
+    ).length;
+    const player2SunkCount = ships.filter(
       (el) => el.player === 'Player2' && el.sunk === true
-    );
-    console.log(shipsSunkPlayer1);
-    if (shipsSunkPlayer1.length === ships.length / 2) return 'Game Over';
+    ).length;
+    const totalShips = ships.length;
+    if (
+      player1SunkCount === totalShips / 2 ||
+      player2SunkCount === totalShips / 2
+    )
+      return 'Game Over';
   };
 
-  return { board, placeShip, receiveAttack };
+  return { board, placeShip, receiveAttack, gameOver };
 };
 
 const myFirstBoard = Gameboard(10);

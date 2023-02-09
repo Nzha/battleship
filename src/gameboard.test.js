@@ -57,3 +57,13 @@ describe('Receive attack', () => {
   });
 });
 
+describe('Check if game over', () => {
+  const myFirstBoard = Gameboard(10);
+  const patrol1 = Ship('patrol1', 2);
+  myFirstBoard.placeShip(patrol1, [6, 0]);
+  patrol1.sunk = true;
+
+  it('Game Over', () => {
+    expect(myFirstBoard.gameOver()).toBe('Game Over');
+  });
+});
