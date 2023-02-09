@@ -14,11 +14,14 @@ const Ship = (name, length) => {
 };
 
 const Player = (name) => {
-  return { name };
+  const attack = (coords, gameboard = computerBoard) => {
+    return gameboard.receiveAttack(coords);
+  };
+  return { name, attack };
 };
 
 const computer = (() => {
-  const attack = (gameboard = myFirstBoard) => {
+  const attack = (gameboard = playerBoard) => {
     let board = gameboard.board;
 
     // Save all positions not already attacked
@@ -73,6 +76,7 @@ const Gameboard = (size) => {
       const ship = ships.find((el) => el.name === pos);
       ship.hit();
       board[x][y] = `${ship.name}X`;
+      if (gameOver()) return gameOver()
       return `${ship.name} hit`;
     } else {
       board[x][y] = 'X';
@@ -100,20 +104,33 @@ const Gameboard = (size) => {
   return { board, placeShip, receiveAttack, gameOver };
 };
 
-const myFirstBoard = Gameboard(10);
+const playerBoard = Gameboard(10);
+const computerBoard = Gameboard(10);
+
+const player1 = Player('Player1');
+
 const battleship1 = Ship('battleship1', 4);
+const patrol1 = Ship('patrol1', 2);
+const battleship2 = Ship('battleship2', 4);
 const patrol2 = Ship('patrol2', 2);
-ships.push(battleship1, patrol2);
-myFirstBoard.placeShip(battleship1, [5, 0]);
-myFirstBoard.placeShip(patrol2, [6, 0]);
-console.log(myFirstBoard.receiveAttack([6, 0]));
-console.log(myFirstBoard.receiveAttack([6, 1]));
-// patrol2;
-// ships;
-// console.log(myFirstBoard.gameOver());
+ships.push(battleship1, patrol1, battleship2, patrol2);
 
-console.log(myFirstBoard.board);
+playerBoard.placeShip(battleship1, [8, 0]);
+playerBoard.placeShip(patrol1, [6, 0]);
+computerBoard.placeShip(battleship2, [6, 0]);
+computerBoard.placeShip(patrol2, [9, 0]);
 
+console.log(player1.attack([9, 0]));
+console.log(player1.attack([9, 1]));
+console.log(player1.attack([6, 0]));
+console.log(player1.attack([6, 1]));
+console.log(player1.attack([6, 2]));
+console.log(player1.attack([6, 3]));
 console.log(computer.attack());
+console.log(computer.attack());
+console.log(computer.attack());
+
+console.log(playerBoard.board);
+console.log(computerBoard.board);
 
 export default Gameboard;
