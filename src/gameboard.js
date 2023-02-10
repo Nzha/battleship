@@ -21,7 +21,7 @@ const Player = (name) => {
 };
 
 const computer = (() => {
-  const attack = (gameboard = playerBoard) => {
+  const randNewPos = (gameboard = playerBoard) => {
     let board = gameboard.board;
 
     // Save all positions not already attacked
@@ -37,9 +37,17 @@ const computer = (() => {
     // Randomly pick one and attack
     let randomIndex = Math.floor(Math.random() * posNotShot.length);
     let randomPosNotShot = posNotShot[randomIndex];
-    return gameboard.receiveAttack(randomPosNotShot);
+    return randomPosNotShot;
   };
-  return { attack };
+
+  const attack = (coords = randNewPos(), gameboard = playerBoard) => {
+    return gameboard.receiveAttack(coords);
+  };
+
+  // TODO: Computer randomly select a position and place a ship using gameboard.placeShip()
+  const placeShip = (ship, coords, axi = 'horizontal') => {};
+
+  return { randNewPos, attack, placeShip };
 })();
 
 const Gameboard = (size) => {
@@ -76,7 +84,7 @@ const Gameboard = (size) => {
       const ship = ships.find((el) => el.name === pos);
       ship.hit();
       board[x][y] = `${ship.name}X`;
-      if (gameOver()) return gameOver()
+      if (gameOver()) return gameOver();
       return `${ship.name} hit`;
     } else {
       board[x][y] = 'X';
