@@ -14,19 +14,12 @@ const Ship = (name, length) => {
 };
 
 const Player = (name) => {
-  const attack = (coords, gameboard = computerBoard) => {
+  const attack = (coords = randNewPos()) => {
+    let gameboard = name === 'Computer' ? playerBoard : computerBoard;
     return gameboard.receiveAttack(coords);
   };
   return { name, attack };
 };
-
-const computer = (() => {
-  const attack = (coords = randNewPos(), gameboard = playerBoard) => {
-    return gameboard.receiveAttack(coords);
-  };
-
-  return { attack };
-})();
 
 const Gameboard = (size) => {
   const board = Array.from(Array(size), () => new Array(size));
@@ -55,6 +48,7 @@ const Gameboard = (size) => {
     }
   };
 
+  // TODO: Fix bug where ship is no placed when it ends over the edge
   const randPlaceShip = (ship, coords = randNewPos(), axis = 'horizontal') => {
     console.log(coords)
     let placementSuccessful = false;
@@ -133,7 +127,8 @@ const randNewPos = (gameboard = playerBoard) => {
 const playerBoard = Gameboard(10);
 const computerBoard = Gameboard(10);
 
-const player1 = Player('Player1');
+const player = Player('Player1');
+const computer = Player('Computer');
 
 const battleship1 = Ship('battleship1', 4);
 const patrol1 = Ship('patrol1', 2);
@@ -151,12 +146,12 @@ computerBoard.placeShip(patrol2, [9, 0]);
 computerBoard.placeShip(destroyer2);
 computerBoard.placeShip(test2);
 
-console.log(player1.attack([9, 0]));
-console.log(player1.attack([9, 1]));
-console.log(player1.attack([6, 0]));
-console.log(player1.attack([6, 1]));
-console.log(player1.attack([6, 2]));
-// console.log(player1.attack([6, 3]));
+console.log(player.attack([9, 0]));
+console.log(player.attack([9, 1]));
+console.log(player.attack([6, 0]));
+console.log(player.attack([6, 1]));
+console.log(player.attack([6, 2]));
+// console.log(player.attack([6, 3]));
 console.log(computer.attack());
 console.log(computer.attack());
 console.log(computer.attack());
