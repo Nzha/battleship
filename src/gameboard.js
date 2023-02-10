@@ -21,71 +21,53 @@ const Player = (name) => {
 };
 
 const computer = (() => {
-  const randNewPos = (gameboard = playerBoard) => {
-    let board = gameboard.board;
-
-    // Save all positions not already attacked
-    let posNotShot = [];
-    for (let i = 0; i < board.length; i++) {
-      for (let j = 0; j < board[i].length; j++) {
-        let pos = board[i][j];
-        if (!pos || (pos && !pos.includes('X'))) {
-          posNotShot.push([i, j]);
-        }
-      }
-    }
-    // Randomly pick one and attack
-    let randomIndex = Math.floor(Math.random() * posNotShot.length);
-    let randomPosNotShot = posNotShot[randomIndex];
-    return randomPosNotShot;
-  };
-
   const attack = (coords = randNewPos(), gameboard = playerBoard) => {
     return gameboard.receiveAttack(coords);
   };
 
-  const placeShip = (
-    ship,
-    coords = randNewPos(),
-    axis = 'horizontal',
-    gameboard = computerBoard
-  ) => {
-    let placementSuccessful = false;
-    while (!placementSuccessful) {
-      const result = gameboard.placeShip(ship, coords, axis);
-      if (
-        result === 'Move out of bounds' ||
-        result === 'There is already a ship in this location'
-      ) {
-        coords = randNewPos();
-      } else {
-        placementSuccessful = true;
-      }
-    }
-  };
-
-  return { randNewPos, attack, placeShip };
+  return { attack };
 })();
 
 const Gameboard = (size) => {
   const board = Array.from(Array(size), () => new Array(size));
 
   const placeShip = (ship, coords, axis = 'horizontal') => {
-    if (coords[0] < 0 || coords[0] > size || coords[1] < 0 || coords[1] > size)
-      return 'Move out of bounds';
-    if (axis === 'horizontal') {
-      for (let i = coords[1]; i < coords[1] + ship.length; i++) {
-        if (coords[1] + ship.length > size) return;
-        if (board[coords[0]][i] !== undefined)
-          return 'There is already a ship in this location';
-        board[coords[0]][i] = ship.name;
+    if (!coords) {
+      randPlaceShip(ship, coords, axis);
+    } else {
+      if (coords[0] < 0 || coords[0] > size || coords[1] < 0 || coords[1] > size)
+        return 'Move out of bounds';
+      if (axis === 'horizontal') {
+        for (let i = coords[1]; i < coords[1] + ship.length; i++) {
+          if (coords[1] + ship.length > size) return;
+          if (board[coords[0]][i] !== undefined)
+            return 'There is already a ship in this location';
+          board[coords[0]][i] = ship.name;
+        }
+      } else if (axis === 'vertical') {
+        for (let j = coords[0]; j < coords[0] + ship.length; j++) {
+          if (coords[0] + ship.length > size) return;
+          if (board[j][coords[1]] !== undefined)
+            return 'There is already a ship in this location';
+          board[j][coords[1]] = ship.name;
+        }
       }
-    } else if (axis === 'vertical') {
-      for (let j = coords[0]; j < coords[0] + ship.length; j++) {
-        if (coords[0] + ship.length > size) return;
-        if (board[j][coords[1]] !== undefined)
-          return 'There is already a ship in this location';
-        board[j][coords[1]] = ship.name;
+    }
+  };
+
+  const randPlaceShip = (ship, coords = randNewPos(), axis = 'horizontal') => {
+    console.log(coords)
+    let placementSuccessful = false;
+    while (!placementSuccessful) {
+      const result = placeShip(ship, coords, axis);
+      if (
+        result === 'Move out of bounds' ||
+        result === 'There is already a ship in this location'
+      ) {
+        coords = randNewPos();
+        // continue;
+      } else {
+        placementSuccessful = true;
       }
     }
   };
@@ -129,6 +111,25 @@ const Gameboard = (size) => {
   return { board, placeShip, receiveAttack, gameOver };
 };
 
+const randNewPos = (gameboard = playerBoard) => {
+  let board = gameboard.board;
+
+  // Save all positions not already attacked
+  let posNotShot = [];
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      let pos = board[i][j];
+      if (!pos || (pos && !pos.includes('X'))) {
+        posNotShot.push([i, j]);
+      }
+    }
+  }
+  // Randomly pick one and attack
+  let randomIndex = Math.floor(Math.random() * posNotShot.length);
+  let randomPosNotShot = posNotShot[randomIndex];
+  return randomPosNotShot;
+};
+
 const playerBoard = Gameboard(10);
 const computerBoard = Gameboard(10);
 
@@ -139,7 +140,7 @@ const patrol1 = Ship('patrol1', 2);
 const battleship2 = Ship('battleship2', 4);
 const patrol2 = Ship('patrol2', 2);
 const destroyer2 = Ship('destroyer2', 3);
-const test2 = Ship('test2', 5)
+const test2 = Ship('test2', 5);
 ships.push(battleship1, patrol1, battleship2, patrol2, destroyer2, test2);
 
 playerBoard.placeShip(battleship1, [8, 0]);
@@ -147,8 +148,8 @@ playerBoard.placeShip(patrol1, [6, 0]);
 computerBoard.placeShip(battleship2, [6, 0]);
 computerBoard.placeShip(patrol2, [9, 0]);
 
-computer.placeShip(destroyer2);
-computer.placeShip(test2);
+computerBoard.placeShip(destroyer2);
+computerBoard.placeShip(test2);
 
 console.log(player1.attack([9, 0]));
 console.log(player1.attack([9, 1]));
