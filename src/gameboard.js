@@ -44,8 +44,25 @@ const computer = (() => {
     return gameboard.receiveAttack(coords);
   };
 
-  // TODO: Computer randomly select a position and place a ship using gameboard.placeShip()
-  const placeShip = (ship, coords, axi = 'horizontal') => {};
+  const placeShip = (
+    ship,
+    coords = randNewPos(),
+    axis = 'horizontal',
+    gameboard = computerBoard
+  ) => {
+    let placementSuccessful = false;
+    while (!placementSuccessful) {
+      const result = gameboard.placeShip(ship, coords, axis);
+      if (
+        result === 'Move out of bounds' ||
+        result === 'There is already a ship in this location'
+      ) {
+        coords = randNewPos();
+      } else {
+        placementSuccessful = true;
+      }
+    }
+  };
 
   return { randNewPos, attack, placeShip };
 })();
@@ -121,19 +138,24 @@ const battleship1 = Ship('battleship1', 4);
 const patrol1 = Ship('patrol1', 2);
 const battleship2 = Ship('battleship2', 4);
 const patrol2 = Ship('patrol2', 2);
-ships.push(battleship1, patrol1, battleship2, patrol2);
+const destroyer2 = Ship('destroyer2', 3);
+const test2 = Ship('test2', 5)
+ships.push(battleship1, patrol1, battleship2, patrol2, destroyer2, test2);
 
 playerBoard.placeShip(battleship1, [8, 0]);
 playerBoard.placeShip(patrol1, [6, 0]);
 computerBoard.placeShip(battleship2, [6, 0]);
 computerBoard.placeShip(patrol2, [9, 0]);
 
+computer.placeShip(destroyer2);
+computer.placeShip(test2);
+
 console.log(player1.attack([9, 0]));
 console.log(player1.attack([9, 1]));
 console.log(player1.attack([6, 0]));
 console.log(player1.attack([6, 1]));
 console.log(player1.attack([6, 2]));
-console.log(player1.attack([6, 3]));
+// console.log(player1.attack([6, 3]));
 console.log(computer.attack());
 console.log(computer.attack());
 console.log(computer.attack());
