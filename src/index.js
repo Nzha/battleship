@@ -2,10 +2,11 @@ import './style.css';
 import Player from './player';
 import Gameboard from './gameboard';
 import Ship from './ship';
+import gameboardDiv from './DOM';
 
 let ships = [];
 
-const gameLoop = () => {
+const game = (() => {
   const playerBoard = Gameboard();
   const computerBoard = Gameboard();
 
@@ -48,19 +49,20 @@ const gameLoop = () => {
   });
 
   // console.log(player.attack([9, 0]));
-  // console.log(player.attack([9, 1]));
-  // console.log(player.attack([6, 0]));
-  // console.log(player.attack([6, 1]));
-  // console.log(player.attack([6, 2]));
-  console.log(player.attack());
-  console.log(computer.attack());
-  console.log(computer.attack());
-  console.log(computer.attack());
+  // console.log(player.attack());
+  // console.log(computer.attack());
+  // console.log(computer.attack());
+  // console.log(computer.attack());
 
   console.log(playerBoard.board);
-  // console.log(computerBoard.board);
-};
+  console.log(computerBoard.board);
 
-gameLoop();
+  return {
+    playerBoard,
+    computerBoard,
+  };
+})();
 
-export { ships };
+gameboardDiv();
+
+export { ships, game };

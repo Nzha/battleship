@@ -21,7 +21,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* * {\n  border: 1px solid red;\n} */\n\n:root {\n  font-family: 'Roboto', sans-serif;\n  --shadow: rgba(0, 0, 0, 0.05) 0px 6px 10px 0px,\n    rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;\n  --color: #166e67;\n  --gap: 0.5rem;\n  --radius: 5px;\n}\n\nhtml {\n  box-sizing: border-box;\n}\n*,\n*:before,\n*:after {\n  box-sizing: inherit;\n}\n\nbody {\n  height: 100vh;\n  background-color: #fcfcfc;\n  margin: 0;\n  padding: 0;\n}\n", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;;GAEG;;AAEH;EACE,iCAAiC;EACjC;sCACoC;EACpC,gBAAgB;EAChB,aAAa;EACb,aAAa;AACf;;AAEA;EACE,sBAAsB;AACxB;AACA;;;EAGE,mBAAmB;AACrB;;AAEA;EACE,aAAa;EACb,yBAAyB;EACzB,SAAS;EACT,UAAU;AACZ","sourcesContent":["/* * {\n  border: 1px solid red;\n} */\n\n:root {\n  font-family: 'Roboto', sans-serif;\n  --shadow: rgba(0, 0, 0, 0.05) 0px 6px 10px 0px,\n    rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;\n  --color: #166e67;\n  --gap: 0.5rem;\n  --radius: 5px;\n}\n\nhtml {\n  box-sizing: border-box;\n}\n*,\n*:before,\n*:after {\n  box-sizing: inherit;\n}\n\nbody {\n  height: 100vh;\n  background-color: #fcfcfc;\n  margin: 0;\n  padding: 0;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* * {\n  border: 1px solid red;\n} */\n\n:root {\n  font-family: 'Roboto', sans-serif;\n  --shadow: rgba(0, 0, 0, 0.05) 0px 6px 10px 0px,\n    rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;\n  --color: #166e67;\n  --gap: 0.5rem;\n  --radius: 5px;\n}\n\nhtml {\n  box-sizing: border-box;\n}\n*,\n*:before,\n*:after {\n  box-sizing: inherit;\n}\n\nbody {\n  height: 100vh;\n  background-color: #fcfcfc;\n  margin: 0;\n  padding: 0;\n  display: grid;\n  grid-template-rows: auto 1fr auto;\n  grid-template-areas:\n    \"header\"\n    \"main\"\n    \"footer\";\n}\n\nheader {\n  grid-area: header;\n}\n\n.main {\n  grid-area: main;\n  align-self: center;\n}\n\n.boards-container {\n  display: flex;\n  justify-content: center;\n  gap: 10rem;\n}\n\n[class=\"player1-board\"],\n[class=\"player2-board\"] {\n  background-color: #269ad7;\n  display: grid;\n  width: 500px;\n  height: 500px;\n  display: grid;\n  grid-template-columns: repeat(10, 1fr);\n  grid-template-rows: repeat(10, 1fr);\n}\n\n.pos {\n  border: 2.5px solid #c2deec;\n}\n\n.player2-board.pos:hover {\n  cursor: crosshair;\n  border: 5px double #f54140;\n}\n\nfooter {\n  grid-area: footer;\n}", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;;GAEG;;AAEH;EACE,iCAAiC;EACjC;sCACoC;EACpC,gBAAgB;EAChB,aAAa;EACb,aAAa;AACf;;AAEA;EACE,sBAAsB;AACxB;AACA;;;EAGE,mBAAmB;AACrB;;AAEA;EACE,aAAa;EACb,yBAAyB;EACzB,SAAS;EACT,UAAU;EACV,aAAa;EACb,iCAAiC;EACjC;;;YAGU;AACZ;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,eAAe;EACf,kBAAkB;AACpB;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,UAAU;AACZ;;AAEA;;EAEE,yBAAyB;EACzB,aAAa;EACb,YAAY;EACZ,aAAa;EACb,aAAa;EACb,sCAAsC;EACtC,mCAAmC;AACrC;;AAEA;EACE,2BAA2B;AAC7B;;AAEA;EACE,iBAAiB;EACjB,0BAA0B;AAC5B;;AAEA;EACE,iBAAiB;AACnB","sourcesContent":["/* * {\n  border: 1px solid red;\n} */\n\n:root {\n  font-family: 'Roboto', sans-serif;\n  --shadow: rgba(0, 0, 0, 0.05) 0px 6px 10px 0px,\n    rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;\n  --color: #166e67;\n  --gap: 0.5rem;\n  --radius: 5px;\n}\n\nhtml {\n  box-sizing: border-box;\n}\n*,\n*:before,\n*:after {\n  box-sizing: inherit;\n}\n\nbody {\n  height: 100vh;\n  background-color: #fcfcfc;\n  margin: 0;\n  padding: 0;\n  display: grid;\n  grid-template-rows: auto 1fr auto;\n  grid-template-areas:\n    \"header\"\n    \"main\"\n    \"footer\";\n}\n\nheader {\n  grid-area: header;\n}\n\n.main {\n  grid-area: main;\n  align-self: center;\n}\n\n.boards-container {\n  display: flex;\n  justify-content: center;\n  gap: 10rem;\n}\n\n[class=\"player1-board\"],\n[class=\"player2-board\"] {\n  background-color: #269ad7;\n  display: grid;\n  width: 500px;\n  height: 500px;\n  display: grid;\n  grid-template-columns: repeat(10, 1fr);\n  grid-template-rows: repeat(10, 1fr);\n}\n\n.pos {\n  border: 2.5px solid #c2deec;\n}\n\n.player2-board.pos:hover {\n  cursor: crosshair;\n  border: 5px double #f54140;\n}\n\nfooter {\n  grid-area: footer;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -507,6 +507,45 @@ module.exports = styleTagTransform;
 
 /***/ }),
 
+/***/ "./src/DOM.js":
+/*!********************!*\
+  !*** ./src/DOM.js ***!
+  \********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! . */ "./src/index.js");
+
+
+const gameboardDiv = () => {
+  const player1Board = ___WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board;
+  const player2Board = ___WEBPACK_IMPORTED_MODULE_0__.game.computerBoard.board;
+  const player1BoardDiv = document.querySelector('.player1-board');
+  const player2BoardDiv = document.querySelector('.player2-board');
+  
+  function createPos(board, boardDiv) {
+    for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j < board[i].length; j++) {
+        const pos = document.createElement('div');
+        pos.classList.add(`${boardDiv.className}`, `pos`);
+        pos.setAttribute('data-coords', `[${i},${j}]`);
+        boardDiv.appendChild(pos);
+      }
+    }
+  }
+  
+  createPos(player1Board, player1BoardDiv);
+  createPos(player2Board, player2BoardDiv);  
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (gameboardDiv);
+
+
+/***/ }),
+
 /***/ "./src/gameboard.js":
 /*!**************************!*\
   !*** ./src/gameboard.js ***!
@@ -641,12 +680,15 @@ const randNewPos = (board) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "game": () => (/* binding */ game),
 /* harmony export */   "ships": () => (/* binding */ ships)
 /* harmony export */ });
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./src/style.css");
 /* harmony import */ var _player__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./player */ "./src/player.js");
 /* harmony import */ var _gameboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./gameboard */ "./src/gameboard.js");
 /* harmony import */ var _ship__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ship */ "./src/ship.js");
+/* harmony import */ var _DOM__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./DOM */ "./src/DOM.js");
+
 
 
 
@@ -654,7 +696,7 @@ __webpack_require__.r(__webpack_exports__);
 
 let ships = [];
 
-const gameLoop = () => {
+const game = (() => {
   const playerBoard = (0,_gameboard__WEBPACK_IMPORTED_MODULE_2__["default"])();
   const computerBoard = (0,_gameboard__WEBPACK_IMPORTED_MODULE_2__["default"])();
 
@@ -697,20 +739,21 @@ const gameLoop = () => {
   });
 
   // console.log(player.attack([9, 0]));
-  // console.log(player.attack([9, 1]));
-  // console.log(player.attack([6, 0]));
-  // console.log(player.attack([6, 1]));
-  // console.log(player.attack([6, 2]));
-  console.log(player.attack());
-  console.log(computer.attack());
-  console.log(computer.attack());
-  console.log(computer.attack());
+  // console.log(player.attack());
+  // console.log(computer.attack());
+  // console.log(computer.attack());
+  // console.log(computer.attack());
 
   console.log(playerBoard.board);
-  // console.log(computerBoard.board);
-};
+  console.log(computerBoard.board);
 
-gameLoop();
+  return {
+    playerBoard,
+    computerBoard,
+  };
+})();
+
+(0,_DOM__WEBPACK_IMPORTED_MODULE_4__["default"])();
 
 
 

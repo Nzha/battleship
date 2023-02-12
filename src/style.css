@@ -25,4 +25,49 @@ body {
   background-color: #fcfcfc;
   margin: 0;
   padding: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+}
+
+header {
+  grid-area: header;
+}
+
+.main {
+  grid-area: main;
+  align-self: center;
+}
+
+.boards-container {
+  display: flex;
+  justify-content: center;
+  gap: 10rem;
+}
+
+[class="player1-board"],
+[class="player2-board"] {
+  background-color: #269ad7;
+  display: grid;
+  width: 500px;
+  height: 500px;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+}
+
+.pos {
+  border: 2.5px solid #c2deec;
+}
+
+.player2-board.pos:hover {
+  cursor: crosshair;
+  border: 5px double #f54140;
+}
+
+footer {
+  grid-area: footer;
 }
