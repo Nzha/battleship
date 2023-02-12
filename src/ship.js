@@ -11,4 +11,4 @@ const Ship = (name, length) => {
   return { name, length, health, player, sunk, hit };
 };
 
-export default Ship;
+export {Ship as default, ships};

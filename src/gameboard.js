@@ -1,4 +1,4 @@
-const Gameboard = (size) => {
+const Gameboard = (size = 10) => {
   const board = Array.from(Array(size), () => new Array(size));
 
   const placeShip = (ship, coords, axis = 'horizontal') => {
@@ -27,14 +27,14 @@ const Gameboard = (size) => {
     }
   };
 
-  const randPlaceShip = (ship, coords = randNewPos(), axis = 'horizontal') => {
+  const randPlaceShip = (ship, coords = randNewPos(board), axis = 'horizontal') => {
     let placementSuccessful = false;
     while (!placementSuccessful) {
       const result = placeShip(ship, coords, axis);
       if (result === 'Placement successful') {
         placementSuccessful = true;
       } else {
-        coords = randNewPos();
+        coords = randNewPos(board);
       }
     }
   };
@@ -78,9 +78,7 @@ const Gameboard = (size) => {
   return { board, placeShip, receiveAttack, gameOver };
 };
 
-const randNewPos = (gameboard = playerBoard) => {
-  let board = gameboard.board;
-
+const randNewPos = (board) => {
   // Save all positions not already attacked
   let posNotShot = [];
   for (let i = 0; i < board.length; i++) {
