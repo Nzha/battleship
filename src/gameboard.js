@@ -25,6 +25,7 @@ const Gameboard = (size) => {
   const board = Array.from(Array(size), () => new Array(size));
 
   const placeShip = (ship, coords, axis = 'horizontal') => {
+    // Place ship in random position if no coords
     if (!coords) {
       randPlaceShip(ship, coords, axis);
     } else {
@@ -45,23 +46,18 @@ const Gameboard = (size) => {
           board[j][coords[1]] = ship.name;
         }
       }
+      return 'Placement successful';
     }
   };
 
-  // TODO: Fix bug where ship is no placed when it ends over the edge
   const randPlaceShip = (ship, coords = randNewPos(), axis = 'horizontal') => {
-    console.log(coords)
     let placementSuccessful = false;
     while (!placementSuccessful) {
       const result = placeShip(ship, coords, axis);
-      if (
-        result === 'Move out of bounds' ||
-        result === 'There is already a ship in this location'
-      ) {
-        coords = randNewPos();
-        // continue;
-      } else {
+      if (result === 'Placement successful') {
         placementSuccessful = true;
+      } else {
+        coords = randNewPos();
       }
     }
   };
