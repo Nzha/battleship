@@ -1,3 +1,5 @@
+const ships = [];
+
 const Ship = (name, length) => {
   let health = length;
   let sunk = false;
