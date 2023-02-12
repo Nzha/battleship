@@ -1,5 +1,3 @@
-const ships = [];
-
 const Ship = (name, length) => {
   let health = length;
   let sunk = false;
@@ -11,4 +9,4 @@ const Ship = (name, length) => {
   return { name, length, health, player, sunk, hit };
 };
 
-export {Ship as default, ships};
+export default Ship;

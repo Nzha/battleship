@@ -1,3 +1,5 @@
+import { ships } from '.';
+
 const Gameboard = (size = 10) => {
   const board = Array.from(Array(size), () => new Array(size));
 
@@ -6,7 +8,12 @@ const Gameboard = (size = 10) => {
     if (!coords) {
       randPlaceShip(ship, coords, axis);
     } else {
-      if (coords[0] < 0 || coords[0] > size || coords[1] < 0 || coords[1] > size)
+      if (
+        coords[0] < 0 ||
+        coords[0] > size ||
+        coords[1] < 0 ||
+        coords[1] > size
+      )
         return 'Move out of bounds';
       if (axis === 'horizontal') {
         for (let i = coords[1]; i < coords[1] + ship.length; i++) {
@@ -27,7 +34,11 @@ const Gameboard = (size = 10) => {
     }
   };
 
-  const randPlaceShip = (ship, coords = randNewPos(board), axis = 'horizontal') => {
+  const randPlaceShip = (
+    ship,
+    coords = randNewPos(board),
+    axis = 'horizontal'
+  ) => {
     let placementSuccessful = false;
     while (!placementSuccessful) {
       const result = placeShip(ship, coords, axis);
@@ -80,6 +91,7 @@ const Gameboard = (size = 10) => {
 
 const randNewPos = (board) => {
   // Save all positions not already attacked
+  if (!board) return 'no board found';
   let posNotShot = [];
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
@@ -95,4 +107,4 @@ const randNewPos = (board) => {
   return randomPosNotShot;
 };
 
-export {Gameboard as default, randNewPos};
+export { Gameboard as default, randNewPos };

@@ -1,11 +1,10 @@
 import { randNewPos } from "./gameboard";
 
-const Player = (name) => {
-  const attack = (coords = randNewPos()) => {
-    let gameboard = name === 'Computer' ? playerBoard : computerBoard;
-    return gameboard.receiveAttack(coords);
+const Player = (name, ennemyGameboard) => {
+  const attack = (coords = randNewPos(ennemyGameboard.board)) => {
+    return ennemyGameboard.receiveAttack(coords);
   };
-  return { name, attack };
+  return { name, ennemyGameboard, attack };
 };
 
 export default Player;

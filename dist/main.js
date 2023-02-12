@@ -518,6 +518,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ Gameboard),
 /* harmony export */   "randNewPos": () => (/* binding */ randNewPos)
 /* harmony export */ });
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! . */ "./src/index.js");
+
+
 const Gameboard = (size = 10) => {
   const board = Array.from(Array(size), () => new Array(size));
 
@@ -526,7 +529,12 @@ const Gameboard = (size = 10) => {
     if (!coords) {
       randPlaceShip(ship, coords, axis);
     } else {
-      if (coords[0] < 0 || coords[0] > size || coords[1] < 0 || coords[1] > size)
+      if (
+        coords[0] < 0 ||
+        coords[0] > size ||
+        coords[1] < 0 ||
+        coords[1] > size
+      )
         return 'Move out of bounds';
       if (axis === 'horizontal') {
         for (let i = coords[1]; i < coords[1] + ship.length; i++) {
@@ -547,7 +555,11 @@ const Gameboard = (size = 10) => {
     }
   };
 
-  const randPlaceShip = (ship, coords = randNewPos(board), axis = 'horizontal') => {
+  const randPlaceShip = (
+    ship,
+    coords = randNewPos(board),
+    axis = 'horizontal'
+  ) => {
     let placementSuccessful = false;
     while (!placementSuccessful) {
       const result = placeShip(ship, coords, axis);
@@ -567,7 +579,7 @@ const Gameboard = (size = 10) => {
 
     // Add 'X' to all positions shot
     if (pos) {
-      const ship = ships.find((el) => el.name === pos);
+      const ship = ___WEBPACK_IMPORTED_MODULE_0__.ships.find((el) => el.name === pos);
       ship.hit();
       board[x][y] = `${ship.name}X`;
       if (gameOver()) return gameOver();
@@ -579,13 +591,13 @@ const Gameboard = (size = 10) => {
   };
 
   const gameOver = () => {
-    const player1SunkCount = ships.filter(
+    const player1SunkCount = ___WEBPACK_IMPORTED_MODULE_0__.ships.filter(
       (el) => el.player === 'Player1' && el.sunk === true
     ).length;
-    const player2SunkCount = ships.filter(
+    const player2SunkCount = ___WEBPACK_IMPORTED_MODULE_0__.ships.filter(
       (el) => el.player === 'Player2' && el.sunk === true
     ).length;
-    const totalShips = ships.length;
+    const totalShips = ___WEBPACK_IMPORTED_MODULE_0__.ships.length;
 
     if (
       player1SunkCount === totalShips / 2 ||
@@ -600,6 +612,7 @@ const Gameboard = (size = 10) => {
 
 const randNewPos = (board) => {
   // Save all positions not already attacked
+  if (!board) return 'no board found';
   let posNotShot = [];
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
@@ -620,6 +633,90 @@ const randNewPos = (board) => {
 
 /***/ }),
 
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ships": () => (/* binding */ ships)
+/* harmony export */ });
+/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./src/style.css");
+/* harmony import */ var _player__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./player */ "./src/player.js");
+/* harmony import */ var _gameboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./gameboard */ "./src/gameboard.js");
+/* harmony import */ var _ship__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ship */ "./src/ship.js");
+
+
+
+
+
+let ships = [];
+
+const gameLoop = () => {
+  const playerBoard = (0,_gameboard__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  const computerBoard = (0,_gameboard__WEBPACK_IMPORTED_MODULE_2__["default"])();
+
+  const player = (0,_player__WEBPACK_IMPORTED_MODULE_1__["default"])('Player1', computerBoard);
+  const computer = (0,_player__WEBPACK_IMPORTED_MODULE_1__["default"])('Player2', playerBoard);
+
+  const carrier1 = (0,_ship__WEBPACK_IMPORTED_MODULE_3__["default"])('carrier1', 5);
+  const battleship1 = (0,_ship__WEBPACK_IMPORTED_MODULE_3__["default"])('battleship1', 4);
+  const destroyer1 = (0,_ship__WEBPACK_IMPORTED_MODULE_3__["default"])('destroyer1', 3);
+  const submarine1 = (0,_ship__WEBPACK_IMPORTED_MODULE_3__["default"])('submarine1', 3);
+  const patrol1 = (0,_ship__WEBPACK_IMPORTED_MODULE_3__["default"])('patrol1', 2);
+
+  const carrier2 = (0,_ship__WEBPACK_IMPORTED_MODULE_3__["default"])('carrier2', 5);
+  const battleship2 = (0,_ship__WEBPACK_IMPORTED_MODULE_3__["default"])('battleship2', 4);
+  const destroyer2 = (0,_ship__WEBPACK_IMPORTED_MODULE_3__["default"])('destroyer2', 3);
+  const submarine2 = (0,_ship__WEBPACK_IMPORTED_MODULE_3__["default"])('submarine2', 3);
+  const patrol2 = (0,_ship__WEBPACK_IMPORTED_MODULE_3__["default"])('patrol2', 2);
+
+  ships.push(
+    carrier1,
+    battleship1,
+    destroyer1,
+    submarine1,
+    patrol1,
+    carrier2,
+    battleship2,
+    destroyer2,
+    submarine2,
+    patrol2
+  );
+
+  const playerShips = ships.filter((ship) => ship.player === 'Player1');
+  playerShips.forEach((ship) => {
+    playerBoard.placeShip(ship);
+  });
+
+  const computerShips = ships.filter((ship) => ship.player === 'Player2');
+  computerShips.forEach((ship) => {
+    computerBoard.placeShip(ship);
+  });
+
+  // console.log(player.attack([9, 0]));
+  // console.log(player.attack([9, 1]));
+  // console.log(player.attack([6, 0]));
+  // console.log(player.attack([6, 1]));
+  // console.log(player.attack([6, 2]));
+  console.log(player.attack());
+  console.log(computer.attack());
+  console.log(computer.attack());
+  console.log(computer.attack());
+
+  console.log(playerBoard.board);
+  // console.log(computerBoard.board);
+};
+
+gameLoop();
+
+
+
+
+/***/ }),
+
 /***/ "./src/player.js":
 /*!***********************!*\
   !*** ./src/player.js ***!
@@ -633,12 +730,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _gameboard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./gameboard */ "./src/gameboard.js");
 
 
-const Player = (name) => {
-  const attack = (coords = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.randNewPos)()) => {
-    let gameboard = name === 'Computer' ? playerBoard : computerBoard;
-    return gameboard.receiveAttack(coords);
+const Player = (name, ennemyGameboard) => {
+  const attack = (coords = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.randNewPos)(ennemyGameboard.board)) => {
+    return ennemyGameboard.receiveAttack(coords);
   };
-  return { name, attack };
+  return { name, ennemyGameboard, attack };
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Player);
@@ -653,11 +749,8 @@ const Player = (name) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Ship),
-/* harmony export */   "ships": () => (/* binding */ ships)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-const ships = [];
-
 const Ship = (name, length) => {
   let health = length;
   let sunk = false;
@@ -669,7 +762,7 @@ const Ship = (name, length) => {
   return { name, length, health, player, sunk, hit };
 };
 
-
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Ship);
 
 
 /***/ })
@@ -747,72 +840,12 @@ const Ship = (name, length) => {
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-(() => {
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./src/style.css");
-/* harmony import */ var _player__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./player */ "./src/player.js");
-/* harmony import */ var _gameboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./gameboard */ "./src/gameboard.js");
-/* harmony import */ var _ship__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ship */ "./src/ship.js");
-
-
-
-
-
-const gameLoop = () => {
-  const player = (0,_player__WEBPACK_IMPORTED_MODULE_1__["default"])('Player1');
-  const computer = (0,_player__WEBPACK_IMPORTED_MODULE_1__["default"])('Player2');
-
-  const playerBoard = (0,_gameboard__WEBPACK_IMPORTED_MODULE_2__["default"])();
-  const computerBoard = (0,_gameboard__WEBPACK_IMPORTED_MODULE_2__["default"])();
-
-  const carrier1 = (0,_ship__WEBPACK_IMPORTED_MODULE_3__["default"])('carrier1', 5);
-  const battleship1 = (0,_ship__WEBPACK_IMPORTED_MODULE_3__["default"])('battleship1', 4);
-  const destroyer1 = (0,_ship__WEBPACK_IMPORTED_MODULE_3__["default"])('destroyer1', 3);
-  const submarine1 = (0,_ship__WEBPACK_IMPORTED_MODULE_3__["default"])('submarine1', 3);
-  const patrol1 = (0,_ship__WEBPACK_IMPORTED_MODULE_3__["default"])('patrol1', 2);
-
-  const carrier2 = (0,_ship__WEBPACK_IMPORTED_MODULE_3__["default"])('carrier2', 5);
-  const battleship2 = (0,_ship__WEBPACK_IMPORTED_MODULE_3__["default"])('battleship2', 4);
-  const destroyer2 = (0,_ship__WEBPACK_IMPORTED_MODULE_3__["default"])('destroyer2', 3);
-  const submarine2 = (0,_ship__WEBPACK_IMPORTED_MODULE_3__["default"])('submarine2', 3);
-  const patrol2 = (0,_ship__WEBPACK_IMPORTED_MODULE_3__["default"])('patrol2', 2);
-
-  _ship__WEBPACK_IMPORTED_MODULE_3__.ships.push(
-    carrier1,
-    battleship1,
-    destroyer1,
-    submarine1,
-    patrol1,
-    carrier2,
-    battleship2,
-    destroyer2,
-    submarine2,
-    patrol2
-  );
-
-  const playerShips = _ship__WEBPACK_IMPORTED_MODULE_3__.ships.filter((ship) => ship.player === 'Player1');
-  playerShips.forEach((ship) => {
-    playerBoard.placeShip(ship);
-  });
-
-  const computerShips = _ship__WEBPACK_IMPORTED_MODULE_3__.ships.filter((ship) => ship.player === 'Player2');
-  computerShips.forEach((ship) => {
-    computerBoard.placeShip(ship);
-  });
-
-  console.log(playerBoard.board);
-  console.log(computerBoard.board);
-}
-
-gameLoop();
-
-})();
-
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
+/******/ 	
 /******/ })()
 ;
 //# sourceMappingURL=main.js.map
