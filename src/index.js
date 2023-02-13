@@ -2,7 +2,7 @@ import './style.css';
 import Player from './player';
 import Gameboard from './gameboard';
 import Ship from './ship';
-import gameboardDiv from './DOM';
+import displayGameboard from './DOM';
 
 let ships = [];
 
@@ -60,9 +60,11 @@ const game = (() => {
   return {
     playerBoard,
     computerBoard,
+    player,
+    computer
   };
 })();
 
-gameboardDiv();
+displayGameboard();
 
 export { ships, game };
