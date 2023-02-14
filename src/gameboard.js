@@ -61,7 +61,7 @@ const Gameboard = (size = 10) => {
       const ship = ships.find((el) => el.name === pos);
       ship.hit();
       board[x][y] = `${ship.name}X`;
-      if (gameOver()) return gameOver();
+      if (gameOver()) return `${ship.name} hit. ${gameOver()}`;
       return `${ship.name} hit`;
     } else {
       board[x][y] = 'X';

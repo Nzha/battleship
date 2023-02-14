@@ -33,10 +33,10 @@ const displayPlayerNames = ((player1 = 'Player', player2 = 'Computer') => {
 const playerAttacks = () => {
   const computerPos = document.querySelectorAll('.player2-board.pos');
   computerPos.forEach((computerPos) =>
-    computerPos.addEventListener('click', playerRound)
+    computerPos.addEventListener('click', handlePlayerAttacks)
   );
 
-  function playerRound(e) {
+  function handlePlayerAttacks(e) {
     // Use JSON.parse to convert '[x, y]' from string to array
     const coords = JSON.parse(e.target.dataset.coords);
     const playerAttack = game.player.attack(coords);
@@ -44,10 +44,12 @@ const playerAttacks = () => {
 
     const computerAttack = game.computer.attack();
     displayAttack(null, computerAttack);
+    console.log(game.computerBoard.board)
   }
 };
 
 const displayAttack = (e, attack) => {
+  console.log(attack)
   const coords = attack.slice(-5);
   let target = attack.includes('Player1')
     ? e.target
