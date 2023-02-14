@@ -11,7 +11,7 @@ const displayGameboard = () => {
       for (let j = 0; j < board[i].length; j++) {
         const pos = document.createElement('div');
         pos.classList.add(`${boardDiv.className}`, `pos`);
-        pos.setAttribute('data-coords', `[${i}, ${j}]`);
+        pos.setAttribute('data-coords', `[${i},${j}]`);
         if (visible && board[i][j]) pos.style.backgroundColor = '#935620';
         boardDiv.appendChild(pos);
       }
@@ -33,17 +33,34 @@ const displayPlayerNames = ((player1 = 'Player', player2 = 'Computer') => {
 const playerAttacks = () => {
   const computerPos = document.querySelectorAll('.player2-board.pos');
   computerPos.forEach((computerPos) =>
-    computerPos.addEventListener('click', displayAttack)
+    computerPos.addEventListener('click', playerRound)
   );
 
-  function displayAttack(e) {
+  function playerRound(e) {
     // Use JSON.parse to convert '[x, y]' from string to array
     let coords = JSON.parse(e.target.dataset.coords);
-    let result = game.computerBoard.receiveAttack(coords);
-    if (result.includes('hit')) {
+    let playerAttack = game.player.attack(coords);
+    displayAttack(e, playerAttack);
+
+    let computerAttack = game.computer.attack();
+    displayAttack(e, computerAttack);
+  }
+};
+
+const displayAttack = (e, attack) => {
+  if (attack.includes('Player1')) {
+    if (attack.includes('hit')) {
       e.target.style.backgroundColor = '#bc1f2a';
     } else {
       e.target.style.backgroundColor = '#a8d9fa';
+    }
+  } else {
+    let coords = attack.slice(-5);
+    const playerPos = document.querySelector(`[data-coords="${coords}"]`);
+    if (attack.includes('hit')) {
+      playerPos.style.backgroundColor = '#bc1f2a';
+    } else {
+      playerPos.style.backgroundColor = '#a8d9fa';
     }
   }
 };

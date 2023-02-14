@@ -21,7 +21,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* * {\n  border: 1px solid red;\n} */\n\n:root {\n  font-family: 'Roboto', sans-serif;\n  --shadow: rgba(0, 0, 0, 0.05) 0px 6px 10px 0px,\n    rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;\n  --color: #166e67;\n  --gap: 0.5rem;\n  --radius: 5px;\n}\n\nhtml {\n  box-sizing: border-box;\n}\n*,\n*:before,\n*:after {\n  box-sizing: inherit;\n}\n\nbody {\n  height: 100vh;\n  background-color: #fcfcfc;\n  margin: 0;\n  padding: 0;\n  display: grid;\n  grid-template-rows: auto 1fr auto;\n  grid-template-areas:\n    \"header\"\n    \"main\"\n    \"footer\";\n}\n\nheader {\n  grid-area: header;\n}\n\n.main {\n  grid-area: main;\n  align-self: center;\n}\n\n.player1-name,\n.player2-name {\n  display: flex;\n  justify-content: center;\n  font-size: 1.9rem;\n}\n\n.boards-container {\n  display: flex;\n  justify-content: center;\n  gap: 10rem;\n}\n\n.player1-board-container,\n.player2-board-container {\n  display: flex;\n  flex-direction: column;\n  gap: 1rem;\n}\n\n[class=\"player1-board\"],\n[class=\"player2-board\"] {\n  background-color: #269ad7;\n  display: grid;\n  width: 500px;\n  height: 500px;\n  display: grid;\n  grid-template-columns: repeat(10, 1fr);\n  grid-template-rows: repeat(10, 1fr);\n}\n\n.pos {\n  border: 2.5px solid #c2deec;\n}\n\n.player2-board.pos:hover {\n  cursor: crosshair;\n  border: 5px double #f54140;\n}\n\nfooter {\n  grid-area: footer;\n}", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;;GAEG;;AAEH;EACE,iCAAiC;EACjC;sCACoC;EACpC,gBAAgB;EAChB,aAAa;EACb,aAAa;AACf;;AAEA;EACE,sBAAsB;AACxB;AACA;;;EAGE,mBAAmB;AACrB;;AAEA;EACE,aAAa;EACb,yBAAyB;EACzB,SAAS;EACT,UAAU;EACV,aAAa;EACb,iCAAiC;EACjC;;;YAGU;AACZ;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,eAAe;EACf,kBAAkB;AACpB;;AAEA;;EAEE,aAAa;EACb,uBAAuB;EACvB,iBAAiB;AACnB;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,UAAU;AACZ;;AAEA;;EAEE,aAAa;EACb,sBAAsB;EACtB,SAAS;AACX;;AAEA;;EAEE,yBAAyB;EACzB,aAAa;EACb,YAAY;EACZ,aAAa;EACb,aAAa;EACb,sCAAsC;EACtC,mCAAmC;AACrC;;AAEA;EACE,2BAA2B;AAC7B;;AAEA;EACE,iBAAiB;EACjB,0BAA0B;AAC5B;;AAEA;EACE,iBAAiB;AACnB","sourcesContent":["/* * {\n  border: 1px solid red;\n} */\n\n:root {\n  font-family: 'Roboto', sans-serif;\n  --shadow: rgba(0, 0, 0, 0.05) 0px 6px 10px 0px,\n    rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;\n  --color: #166e67;\n  --gap: 0.5rem;\n  --radius: 5px;\n}\n\nhtml {\n  box-sizing: border-box;\n}\n*,\n*:before,\n*:after {\n  box-sizing: inherit;\n}\n\nbody {\n  height: 100vh;\n  background-color: #fcfcfc;\n  margin: 0;\n  padding: 0;\n  display: grid;\n  grid-template-rows: auto 1fr auto;\n  grid-template-areas:\n    \"header\"\n    \"main\"\n    \"footer\";\n}\n\nheader {\n  grid-area: header;\n}\n\n.main {\n  grid-area: main;\n  align-self: center;\n}\n\n.player1-name,\n.player2-name {\n  display: flex;\n  justify-content: center;\n  font-size: 1.9rem;\n}\n\n.boards-container {\n  display: flex;\n  justify-content: center;\n  gap: 10rem;\n}\n\n.player1-board-container,\n.player2-board-container {\n  display: flex;\n  flex-direction: column;\n  gap: 1rem;\n}\n\n[class=\"player1-board\"],\n[class=\"player2-board\"] {\n  background-color: #269ad7;\n  display: grid;\n  width: 500px;\n  height: 500px;\n  display: grid;\n  grid-template-columns: repeat(10, 1fr);\n  grid-template-rows: repeat(10, 1fr);\n}\n\n.pos {\n  border: 2.5px solid #c2deec;\n}\n\n.player2-board.pos:hover {\n  cursor: crosshair;\n  border: 5px double #f54140;\n}\n\nfooter {\n  grid-area: footer;\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* * {\n  border: 1px solid red;\n} */\n\n:root {\n  font-family: 'Roboto', sans-serif;\n  --shadow: rgba(0, 0, 0, 0.05) 0px 6px 10px 0px,\n    rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;\n  --color: #166e67;\n  --gap: 0.5rem;\n  --radius: 5px;\n}\n\nhtml {\n  box-sizing: border-box;\n}\n*,\n*:before,\n*:after {\n  box-sizing: inherit;\n}\n\nbody {\n  height: 100vh;\n  background-color: #fcfcfc;\n  margin: 0;\n  padding: 0;\n  display: grid;\n  grid-template-rows: auto 1fr auto;\n  grid-template-areas:\n    \"header\"\n    \"main\"\n    \"footer\";\n}\n\nheader {\n  grid-area: header;\n}\n\n.main {\n  grid-area: main;\n  align-self: center;\n}\n\n.player1-name,\n.player2-name {\n  display: flex;\n  justify-content: center;\n  font-size: 1.9rem;\n}\n\n.boards-container {\n  display: flex;\n  justify-content: center;\n  gap: 10rem;\n}\n\n.player1-board-container,\n.player2-board-container {\n  display: flex;\n  flex-direction: column;\n  gap: 1rem;\n}\n\n[class=\"player1-board\"],\n[class=\"player2-board\"] {\n  background-color: #269ad7;\n  display: grid;\n  width: 450px;\n  height: 450px;\n  display: grid;\n  grid-template-columns: repeat(10, 1fr);\n  grid-template-rows: repeat(10, 1fr);\n}\n\n.pos {\n  border: 2.5px solid #c2deec;\n}\n\n.player2-board.pos:hover {\n  cursor: crosshair;\n  border: 5px double #f54140;\n}\n\nfooter {\n  grid-area: footer;\n}", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;;GAEG;;AAEH;EACE,iCAAiC;EACjC;sCACoC;EACpC,gBAAgB;EAChB,aAAa;EACb,aAAa;AACf;;AAEA;EACE,sBAAsB;AACxB;AACA;;;EAGE,mBAAmB;AACrB;;AAEA;EACE,aAAa;EACb,yBAAyB;EACzB,SAAS;EACT,UAAU;EACV,aAAa;EACb,iCAAiC;EACjC;;;YAGU;AACZ;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,eAAe;EACf,kBAAkB;AACpB;;AAEA;;EAEE,aAAa;EACb,uBAAuB;EACvB,iBAAiB;AACnB;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,UAAU;AACZ;;AAEA;;EAEE,aAAa;EACb,sBAAsB;EACtB,SAAS;AACX;;AAEA;;EAEE,yBAAyB;EACzB,aAAa;EACb,YAAY;EACZ,aAAa;EACb,aAAa;EACb,sCAAsC;EACtC,mCAAmC;AACrC;;AAEA;EACE,2BAA2B;AAC7B;;AAEA;EACE,iBAAiB;EACjB,0BAA0B;AAC5B;;AAEA;EACE,iBAAiB;AACnB","sourcesContent":["/* * {\n  border: 1px solid red;\n} */\n\n:root {\n  font-family: 'Roboto', sans-serif;\n  --shadow: rgba(0, 0, 0, 0.05) 0px 6px 10px 0px,\n    rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;\n  --color: #166e67;\n  --gap: 0.5rem;\n  --radius: 5px;\n}\n\nhtml {\n  box-sizing: border-box;\n}\n*,\n*:before,\n*:after {\n  box-sizing: inherit;\n}\n\nbody {\n  height: 100vh;\n  background-color: #fcfcfc;\n  margin: 0;\n  padding: 0;\n  display: grid;\n  grid-template-rows: auto 1fr auto;\n  grid-template-areas:\n    \"header\"\n    \"main\"\n    \"footer\";\n}\n\nheader {\n  grid-area: header;\n}\n\n.main {\n  grid-area: main;\n  align-self: center;\n}\n\n.player1-name,\n.player2-name {\n  display: flex;\n  justify-content: center;\n  font-size: 1.9rem;\n}\n\n.boards-container {\n  display: flex;\n  justify-content: center;\n  gap: 10rem;\n}\n\n.player1-board-container,\n.player2-board-container {\n  display: flex;\n  flex-direction: column;\n  gap: 1rem;\n}\n\n[class=\"player1-board\"],\n[class=\"player2-board\"] {\n  background-color: #269ad7;\n  display: grid;\n  width: 450px;\n  height: 450px;\n  display: grid;\n  grid-template-columns: repeat(10, 1fr);\n  grid-template-rows: repeat(10, 1fr);\n}\n\n.pos {\n  border: 2.5px solid #c2deec;\n}\n\n.player2-board.pos:hover {\n  cursor: crosshair;\n  border: 5px double #f54140;\n}\n\nfooter {\n  grid-area: footer;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -531,7 +531,7 @@ const displayGameboard = () => {
       for (let j = 0; j < board[i].length; j++) {
         const pos = document.createElement('div');
         pos.classList.add(`${boardDiv.className}`, `pos`);
-        pos.setAttribute('data-coords', `[${i}, ${j}]`);
+        pos.setAttribute('data-coords', `[${i},${j}]`);
         if (visible && board[i][j]) pos.style.backgroundColor = '#935620';
         boardDiv.appendChild(pos);
       }
@@ -553,17 +553,34 @@ const displayPlayerNames = ((player1 = 'Player', player2 = 'Computer') => {
 const playerAttacks = () => {
   const computerPos = document.querySelectorAll('.player2-board.pos');
   computerPos.forEach((computerPos) =>
-    computerPos.addEventListener('click', displayAttack)
+    computerPos.addEventListener('click', playerRound)
   );
 
-  function displayAttack(e) {
+  function playerRound(e) {
     // Use JSON.parse to convert '[x, y]' from string to array
     let coords = JSON.parse(e.target.dataset.coords);
-    let result = ___WEBPACK_IMPORTED_MODULE_0__.game.computerBoard.receiveAttack(coords);
-    if (result.includes('hit')) {
+    let playerAttack = ___WEBPACK_IMPORTED_MODULE_0__.game.player.attack(coords);
+    displayAttack(e, playerAttack);
+
+    let computerAttack = ___WEBPACK_IMPORTED_MODULE_0__.game.computer.attack();
+    displayAttack(e, computerAttack);
+  }
+};
+
+const displayAttack = (e, attack) => {
+  if (attack.includes('Player1')) {
+    if (attack.includes('hit')) {
       e.target.style.backgroundColor = '#bc1f2a';
     } else {
       e.target.style.backgroundColor = '#a8d9fa';
+    }
+  } else {
+    let coords = attack.slice(-5);
+    const playerPos = document.querySelector(`[data-coords="${coords}"]`);
+    if (attack.includes('hit')) {
+      playerPos.style.backgroundColor = '#bc1f2a';
+    } else {
+      playerPos.style.backgroundColor = '#a8d9fa';
     }
   }
 };
@@ -804,7 +821,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const Player = (name, ennemyGameboard) => {
   const attack = (coords = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.randNewPos)(ennemyGameboard.board)) => {
-    return ennemyGameboard.receiveAttack(coords);
+    return `${name}: ${ennemyGameboard.receiveAttack(coords)} at [${coords}]`;
   };
   return { name, ennemyGameboard, attack };
 };

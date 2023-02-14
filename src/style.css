@@ -66,8 +66,8 @@ header {
 [class="player2-board"] {
   background-color: #269ad7;
   display: grid;
-  width: 500px;
-  height: 500px;
+  width: 450px;
+  height: 450px;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
