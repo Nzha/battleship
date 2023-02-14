@@ -553,10 +553,10 @@ const displayPlayerNames = ((player1 = 'Player', player2 = 'Computer') => {
 const playerAttacks = () => {
   const computerPos = document.querySelectorAll('.player2-board.pos');
   computerPos.forEach((computerPos) =>
-    computerPos.addEventListener('click', playerRound)
+    computerPos.addEventListener('click', handlePlayerAttacks)
   );
 
-  function playerRound(e) {
+  function handlePlayerAttacks(e) {
     // Use JSON.parse to convert '[x, y]' from string to array
     const coords = JSON.parse(e.target.dataset.coords);
     const playerAttack = ___WEBPACK_IMPORTED_MODULE_0__.game.player.attack(coords);
@@ -564,10 +564,12 @@ const playerAttacks = () => {
 
     const computerAttack = ___WEBPACK_IMPORTED_MODULE_0__.game.computer.attack();
     displayAttack(null, computerAttack);
+    console.log(___WEBPACK_IMPORTED_MODULE_0__.game.computerBoard.board)
   }
 };
 
 const displayAttack = (e, attack) => {
+  console.log(attack)
   const coords = attack.slice(-5);
   let target = attack.includes('Player1')
     ? e.target
@@ -656,7 +658,7 @@ const Gameboard = (size = 10) => {
       const ship = ___WEBPACK_IMPORTED_MODULE_0__.ships.find((el) => el.name === pos);
       ship.hit();
       board[x][y] = `${ship.name}X`;
-      if (gameOver()) return gameOver();
+      if (gameOver()) return `${ship.name} hit. ${gameOver()}`;
       return `${ship.name} hit`;
     } else {
       board[x][y] = 'X';
