@@ -38,17 +38,17 @@ const playerAttacks = () => {
 
   function playerRound(e) {
     // Use JSON.parse to convert '[x, y]' from string to array
-    let coords = JSON.parse(e.target.dataset.coords);
-    let playerAttack = game.player.attack(coords);
+    const coords = JSON.parse(e.target.dataset.coords);
+    const playerAttack = game.player.attack(coords);
     displayAttack(e, playerAttack);
 
-    let computerAttack = game.computer.attack();
-    displayAttack(e, computerAttack);
+    const computerAttack = game.computer.attack();
+    displayAttack(null, computerAttack);
   }
 };
 
 const displayAttack = (e, attack) => {
-  let coords = attack.slice(-5);
+  const coords = attack.slice(-5);
   let target = attack.includes('Player1')
     ? e.target
     : document.querySelector(`[data-coords="${coords}"]`);
