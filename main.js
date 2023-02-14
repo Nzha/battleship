@@ -568,21 +568,12 @@ const playerAttacks = () => {
 };
 
 const displayAttack = (e, attack) => {
-  if (attack.includes('Player1')) {
-    if (attack.includes('hit')) {
-      e.target.style.backgroundColor = '#bc1f2a';
-    } else {
-      e.target.style.backgroundColor = '#a8d9fa';
-    }
-  } else {
-    let coords = attack.slice(-5);
-    const playerPos = document.querySelector(`[data-coords="${coords}"]`);
-    if (attack.includes('hit')) {
-      playerPos.style.backgroundColor = '#bc1f2a';
-    } else {
-      playerPos.style.backgroundColor = '#a8d9fa';
-    }
-  }
+  let coords = attack.slice(-5);
+  let target = attack.includes('Player1')
+    ? e.target
+    : document.querySelector(`[data-coords="${coords}"]`);
+  let color = attack.includes('hit') ? '#bc1f2a' : '#a8d9fa';
+  target.style.backgroundColor = color;
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displayGameboard);
