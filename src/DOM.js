@@ -40,7 +40,10 @@ const playerAttacks = () => {
     // Use JSON.parse to convert '[x, y]' from string to array
     const coords = JSON.parse(e.target.dataset.coords);
     const playerAttack = game.player.attack(coords);
-    displayAttack(e, playerAttack);
+    let attack = displayAttack(e, playerAttack);
+
+    // Prevent computer from playing after player attacks a pos already shot
+    if (attack === 'pos already shot') return
 
     const computerAttack = game.computer.attack();
     displayAttack(null, computerAttack);
@@ -50,6 +53,7 @@ const playerAttacks = () => {
 
 const displayAttack = (e, attack) => {
   console.log(attack)
+  if (attack.includes('already shot')) return 'pos already shot';
   const coords = attack.slice(-5);
   let target = attack.includes('Player1')
     ? e.target
