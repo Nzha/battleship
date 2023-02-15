@@ -49,9 +49,6 @@ const game = (() => {
   });
 
   // console.log(player.attack([9, 0]));
-  // console.log(player.attack());
-  // console.log(computer.attack());
-  // console.log(computer.attack());
   // console.log(computer.attack());
 
   console.log(playerBoard.board);

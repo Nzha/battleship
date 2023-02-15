@@ -20,7 +20,7 @@ const displayGameboard = () => {
 
   createPos(player1Board, player1BoardDiv, true);
   createPos(player2Board, player2BoardDiv);
-  playerAttacks();
+  createEventListeners();
 };
 
 const displayPlayerNames = ((player1 = 'Player', player2 = 'Computer') => {
@@ -30,36 +30,51 @@ const displayPlayerNames = ((player1 = 'Player', player2 = 'Computer') => {
   player2Name.textContent = player2;
 })();
 
-const playerAttacks = () => {
+const createEventListeners = () => {
   const computerPos = document.querySelectorAll('.player2-board.pos');
   computerPos.forEach((computerPos) =>
-    computerPos.addEventListener('click', handlePlayerAttacks)
+    computerPos.addEventListener('click', handleAttacks)
   );
+};
 
-  function handlePlayerAttacks(e) {
-    // Use JSON.parse to convert '[x, y]' from string to array
-    const coords = JSON.parse(e.target.dataset.coords);
-    const playerAttack = game.player.attack(coords);
-    let attack = displayAttack(e, playerAttack);
+const handleAttacks = (e) => {
+  // Use JSON.parse to convert '[x, y]' from string to array
+  const coords = JSON.parse(e.target.dataset.coords);
+  const playerAttack = game.player.attack(coords);
+  displayAttack(e, playerAttack);
 
-    // Prevent computer from playing after player attacks a pos already shot
-    if (attack === 'pos already shot') return
-
-    const computerAttack = game.computer.attack();
-    displayAttack(null, computerAttack);
-    console.log(game.computerBoard.board)
+  if (playerAttack.includes('already shot')) return;
+  if (playerAttack.includes('Game Over')) {
+    removeAttackEvents();
+    return;
   }
+
+  const computerAttack = game.computer.attack();
+  displayAttack(null, computerAttack);
+
+  if (computerAttack.includes('Game Over')) {
+    removeAttackEvents();
+    return;
+  }
+  console.log(game.computerBoard.board);
 };
 
 const displayAttack = (e, attack) => {
-  console.log(attack)
-  if (attack.includes('already shot')) return 'pos already shot';
+  console.log(attack);
+  if (attack.includes('already shot')) return;
   const coords = attack.slice(-5);
   let target = attack.includes('Player1')
     ? e.target
     : document.querySelector(`[data-coords="${coords}"]`);
   let color = attack.includes('hit') ? '#bc1f2a' : '#a8d9fa';
   target.style.backgroundColor = color;
+};
+
+const removeAttackEvents = () => {
+  const computerPositions = document.querySelectorAll('.player2-board.pos');
+  computerPositions.forEach((computerPosition) =>
+    computerPosition.removeEventListener('click', handleAttacks)
+  );
 };
 
 export default displayGameboard;
