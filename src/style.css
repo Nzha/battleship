@@ -4,11 +4,6 @@
 
 :root {
   font-family: 'Roboto', sans-serif;
-  --shadow: rgba(0, 0, 0, 0.05) 0px 6px 10px 0px,
-    rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;
-  --color: #166e67;
-  --gap: 0.5rem;
-  --radius: 5px;
 }
 
 html {
@@ -22,7 +17,7 @@ html {
 
 body {
   height: 100vh;
-  background-color: #fcfcfc;
+  background-color: #f1f3f4;
   margin: 0;
   padding: 0;
   display: grid;
@@ -71,6 +66,8 @@ header {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
+  gap: 0.15rem;
+  border: 10px solid #c2deec;
 }
 
 .pos {
