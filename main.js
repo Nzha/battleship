@@ -16,12 +16,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2__);
 // Imports
 
 
+
+var ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! ./img/bg.jpg */ "./src/img/bg.jpg"), __webpack_require__.b);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_0___);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* * {\n  border: 1px solid red;\n} */\n\n:root {\n  font-family: 'Roboto', sans-serif;\n}\n\nhtml {\n  box-sizing: border-box;\n}\n*,\n*:before,\n*:after {\n  box-sizing: inherit;\n}\n\nbody {\n  height: 100vh;\n  background-color: #f1f3f4;\n  margin: 0;\n  padding: 0;\n  display: grid;\n  grid-template-rows: auto 1fr auto;\n  grid-template-areas:\n    \"header\"\n    \"main\"\n    \"footer\";\n}\n\nheader {\n  grid-area: header;\n}\n\n.main {\n  grid-area: main;\n  align-self: center;\n}\n\n.player1-name,\n.player2-name {\n  display: flex;\n  justify-content: center;\n  font-size: 1.9rem;\n}\n\n.boards-container {\n  display: flex;\n  justify-content: center;\n  gap: 10rem;\n}\n\n.player1-board-container,\n.player2-board-container {\n  display: flex;\n  flex-direction: column;\n  gap: 1rem;\n}\n\n[class=\"player1-board\"],\n[class=\"player2-board\"] {\n  background-color: #269ad7;\n  display: grid;\n  width: 450px;\n  height: 450px;\n  display: grid;\n  grid-template-columns: repeat(10, 1fr);\n  grid-template-rows: repeat(10, 1fr);\n  gap: 0.15rem;\n  border: 10px solid #c2deec;\n}\n\n.pos {\n  border: 2.5px solid #c2deec;\n}\n\n.player2-board.pos:hover {\n  cursor: crosshair;\n  border: 5px double #f54140;\n}\n\nfooter {\n  grid-area: footer;\n}", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;;GAEG;;AAEH;EACE,iCAAiC;AACnC;;AAEA;EACE,sBAAsB;AACxB;AACA;;;EAGE,mBAAmB;AACrB;;AAEA;EACE,aAAa;EACb,yBAAyB;EACzB,SAAS;EACT,UAAU;EACV,aAAa;EACb,iCAAiC;EACjC;;;YAGU;AACZ;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,eAAe;EACf,kBAAkB;AACpB;;AAEA;;EAEE,aAAa;EACb,uBAAuB;EACvB,iBAAiB;AACnB;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,UAAU;AACZ;;AAEA;;EAEE,aAAa;EACb,sBAAsB;EACtB,SAAS;AACX;;AAEA;;EAEE,yBAAyB;EACzB,aAAa;EACb,YAAY;EACZ,aAAa;EACb,aAAa;EACb,sCAAsC;EACtC,mCAAmC;EACnC,YAAY;EACZ,0BAA0B;AAC5B;;AAEA;EACE,2BAA2B;AAC7B;;AAEA;EACE,iBAAiB;EACjB,0BAA0B;AAC5B;;AAEA;EACE,iBAAiB;AACnB","sourcesContent":["/* * {\n  border: 1px solid red;\n} */\n\n:root {\n  font-family: 'Roboto', sans-serif;\n}\n\nhtml {\n  box-sizing: border-box;\n}\n*,\n*:before,\n*:after {\n  box-sizing: inherit;\n}\n\nbody {\n  height: 100vh;\n  background-color: #f1f3f4;\n  margin: 0;\n  padding: 0;\n  display: grid;\n  grid-template-rows: auto 1fr auto;\n  grid-template-areas:\n    \"header\"\n    \"main\"\n    \"footer\";\n}\n\nheader {\n  grid-area: header;\n}\n\n.main {\n  grid-area: main;\n  align-self: center;\n}\n\n.player1-name,\n.player2-name {\n  display: flex;\n  justify-content: center;\n  font-size: 1.9rem;\n}\n\n.boards-container {\n  display: flex;\n  justify-content: center;\n  gap: 10rem;\n}\n\n.player1-board-container,\n.player2-board-container {\n  display: flex;\n  flex-direction: column;\n  gap: 1rem;\n}\n\n[class=\"player1-board\"],\n[class=\"player2-board\"] {\n  background-color: #269ad7;\n  display: grid;\n  width: 450px;\n  height: 450px;\n  display: grid;\n  grid-template-columns: repeat(10, 1fr);\n  grid-template-rows: repeat(10, 1fr);\n  gap: 0.15rem;\n  border: 10px solid #c2deec;\n}\n\n.pos {\n  border: 2.5px solid #c2deec;\n}\n\n.player2-board.pos:hover {\n  cursor: crosshair;\n  border: 5px double #f54140;\n}\n\nfooter {\n  grid-area: footer;\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* * {\n  border: 1px solid red;\n} */\n\n:root {\n  font-family: 'Roboto', sans-serif;\n}\n\nhtml {\n  box-sizing: border-box;\n}\n*,\n*:before,\n*:after {\n  box-sizing: inherit;\n}\n\nbody {\n  height: 100vh;\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  /* background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('./img/bg.jpg'); */\n  background-color: #f1f3f4;\n  background-position: center;\n  background-size: cover;\n  background-repeat: no-repeat;\n  margin: 0;\n  padding: 0;\n  display: grid;\n  grid-template-rows: auto 1fr auto;\n  grid-template-areas:\n    \"header\"\n    \"main\"\n    \"footer\";\n}\n\nheader {\n  grid-area: header;\n  display: flex;\n  justify-content: center;\n  padding-top: 2rem;\n}\n\n.game-title {\n  font-size: 8rem;\n  font-weight: 600;\n}\n\n.main {\n  grid-area: main;\n  align-self: center;\n}\n\n.player1-name,\n.player2-name {\n  display: flex;\n  justify-content: center;\n  font-size: 1.9rem;\n}\n\n.boards-container {\n  display: flex;\n  justify-content: center;\n  gap: 10rem;\n}\n\n.player1-board-container,\n.player2-board-container {\n  display: flex;\n  flex-direction: column;\n  gap: 1rem;\n}\n\n[class=\"player1-board\"],\n[class=\"player2-board\"] {\n  background-color: #269ad7;\n  display: grid;\n  width: 450px;\n  height: 450px;\n  display: grid;\n  grid-template-columns: repeat(10, 1fr);\n  grid-template-rows: repeat(10, 1fr);\n  gap: 0.15rem;\n  border: 10px solid #c2deec;\n}\n\n.pos {\n  border: 2.5px solid #c2deec;\n}\n\n.player2-board.pos:hover {\n  cursor: crosshair;\n  border: 5px double #f54140;\n}\n\nfooter {\n  grid-area: footer;\n}", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;;GAEG;;AAEH;EACE,iCAAiC;AACnC;;AAEA;EACE,sBAAsB;AACxB;AACA;;;EAGE,mBAAmB;AACrB;;AAEA;EACE,aAAa;EACb,yDAAmC;EACnC,gGAAgG;EAChG,yBAAyB;EACzB,2BAA2B;EAC3B,sBAAsB;EACtB,4BAA4B;EAC5B,SAAS;EACT,UAAU;EACV,aAAa;EACb,iCAAiC;EACjC;;;YAGU;AACZ;;AAEA;EACE,iBAAiB;EACjB,aAAa;EACb,uBAAuB;EACvB,iBAAiB;AACnB;;AAEA;EACE,eAAe;EACf,gBAAgB;AAClB;;AAEA;EACE,eAAe;EACf,kBAAkB;AACpB;;AAEA;;EAEE,aAAa;EACb,uBAAuB;EACvB,iBAAiB;AACnB;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,UAAU;AACZ;;AAEA;;EAEE,aAAa;EACb,sBAAsB;EACtB,SAAS;AACX;;AAEA;;EAEE,yBAAyB;EACzB,aAAa;EACb,YAAY;EACZ,aAAa;EACb,aAAa;EACb,sCAAsC;EACtC,mCAAmC;EACnC,YAAY;EACZ,0BAA0B;AAC5B;;AAEA;EACE,2BAA2B;AAC7B;;AAEA;EACE,iBAAiB;EACjB,0BAA0B;AAC5B;;AAEA;EACE,iBAAiB;AACnB","sourcesContent":["/* * {\n  border: 1px solid red;\n} */\n\n:root {\n  font-family: 'Roboto', sans-serif;\n}\n\nhtml {\n  box-sizing: border-box;\n}\n*,\n*:before,\n*:after {\n  box-sizing: inherit;\n}\n\nbody {\n  height: 100vh;\n  background-image: url(./img/bg.jpg);\n  /* background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('./img/bg.jpg'); */\n  background-color: #f1f3f4;\n  background-position: center;\n  background-size: cover;\n  background-repeat: no-repeat;\n  margin: 0;\n  padding: 0;\n  display: grid;\n  grid-template-rows: auto 1fr auto;\n  grid-template-areas:\n    \"header\"\n    \"main\"\n    \"footer\";\n}\n\nheader {\n  grid-area: header;\n  display: flex;\n  justify-content: center;\n  padding-top: 2rem;\n}\n\n.game-title {\n  font-size: 8rem;\n  font-weight: 600;\n}\n\n.main {\n  grid-area: main;\n  align-self: center;\n}\n\n.player1-name,\n.player2-name {\n  display: flex;\n  justify-content: center;\n  font-size: 1.9rem;\n}\n\n.boards-container {\n  display: flex;\n  justify-content: center;\n  gap: 10rem;\n}\n\n.player1-board-container,\n.player2-board-container {\n  display: flex;\n  flex-direction: column;\n  gap: 1rem;\n}\n\n[class=\"player1-board\"],\n[class=\"player2-board\"] {\n  background-color: #269ad7;\n  display: grid;\n  width: 450px;\n  height: 450px;\n  display: grid;\n  grid-template-columns: repeat(10, 1fr);\n  grid-template-rows: repeat(10, 1fr);\n  gap: 0.15rem;\n  border: 10px solid #c2deec;\n}\n\n.pos {\n  border: 2.5px solid #c2deec;\n}\n\n.player2-board.pos:hover {\n  cursor: crosshair;\n  border: 5px double #f54140;\n}\n\nfooter {\n  grid-area: footer;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -118,6 +123,41 @@ module.exports = function (cssWithMappingToString) {
     }
   };
   return list;
+};
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/getUrl.js":
+/*!********************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/getUrl.js ***!
+  \********************************************************/
+/***/ ((module) => {
+
+
+
+module.exports = function (url, options) {
+  if (!options) {
+    options = {};
+  }
+  if (!url) {
+    return url;
+  }
+  url = String(url.__esModule ? url.default : url);
+
+  // If url is already wrapped in quotes, remove them
+  if (/^['"].*['"]$/.test(url)) {
+    url = url.slice(1, -1);
+  }
+  if (options.hash) {
+    url += options.hash;
+  }
+
+  // Should url be wrapped?
+  // See https://drafts.csswg.org/css-values-3/#urls
+  if (/["'() \t\n]|(%20)/.test(url) || options.needQuotes) {
+    return "\"".concat(url.replace(/"/g, '\\"').replace(/\n/g, "\\n"), "\"");
+  }
+  return url;
 };
 
 /***/ }),
@@ -863,6 +903,16 @@ const Ship = (name, length) => {
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Ship);
 
 
+/***/ }),
+
+/***/ "./src/img/bg.jpg":
+/*!************************!*\
+  !*** ./src/img/bg.jpg ***!
+  \************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "73b33fcedee69c446c47.jpg";
+
 /***/ })
 
 /******/ 	});
@@ -891,6 +941,9 @@ const Ship = (name, length) => {
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -916,6 +969,18 @@ const Ship = (name, length) => {
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -930,6 +995,52 @@ const Ship = (name, length) => {
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		__webpack_require__.b = document.baseURI || self.location.href;
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"main": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		// no on chunks loaded
+/******/ 		
+/******/ 		// no jsonp function
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/nonce */
