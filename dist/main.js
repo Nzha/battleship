@@ -606,6 +606,7 @@ const handleAttacks = (e) => {
   if (playerAttack.includes('already shot')) return;
   if (playerAttack.includes('Game Over')) {
     removeAttackEvents();
+    displayGameOver('Player');
     return;
   }
 
@@ -614,7 +615,7 @@ const handleAttacks = (e) => {
 
   if (computerAttack.includes('Game Over')) {
     removeAttackEvents();
-    displayGameOver();
+    displayGameOver('Computer');
     return;
   }
   console.log(_game__WEBPACK_IMPORTED_MODULE_0__.game.computerBoard.board);
@@ -638,8 +639,11 @@ const removeAttackEvents = () => {
   );
 };
 
-const displayGameOver = () => {
-
+const displayGameOver = (winner) => {
+  const modal = document.querySelector('.modal');
+  const modalContent = document.querySelector('.modal-content');
+  modal.style.display = 'block';
+  modalContent.textContent = `${winner} wins!`;
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displayGameboard);

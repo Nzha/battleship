@@ -46,6 +46,7 @@ const handleAttacks = (e) => {
   if (playerAttack.includes('already shot')) return;
   if (playerAttack.includes('Game Over')) {
     removeAttackEvents();
+    displayGameOver('Player');
     return;
   }
 
@@ -54,7 +55,7 @@ const handleAttacks = (e) => {
 
   if (computerAttack.includes('Game Over')) {
     removeAttackEvents();
-    displayGameOver();
+    displayGameOver('Computer');
     return;
   }
   console.log(game.computerBoard.board);
@@ -78,8 +79,11 @@ const removeAttackEvents = () => {
   );
 };
 
-const displayGameOver = () => {
-
+const displayGameOver = (winner) => {
+  const modal = document.querySelector('.modal');
+  const modalContent = document.querySelector('.modal-content');
+  modal.style.display = 'block';
+  modalContent.textContent = `${winner} wins!`;
 }
 
 export default displayGameboard;
