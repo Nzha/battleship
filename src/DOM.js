@@ -1,4 +1,4 @@
-import { game } from '.';
+import { game } from './game';
 
 const displayGameboard = () => {
   const player1Board = game.playerBoard.board;

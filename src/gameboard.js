@@ -1,4 +1,4 @@
-import { ships } from '.';
+import { ships } from './game';
 
 const Gameboard = (size = 10) => {
   const board = Array.from(Array(size), () => new Array(size));
