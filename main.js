@@ -26,7 +26,7 @@ var ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_0___);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* * {\n  border: 1px solid red;\n} */\n\n:root {\n  font-family: 'Roboto', sans-serif;\n}\n\nhtml {\n  box-sizing: border-box;\n}\n*,\n*:before,\n*:after {\n  box-sizing: inherit;\n}\n\nbody {\n  height: 100vh;\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  /* background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('./img/bg.jpg'); */\n  background-color: #f1f3f4;\n  background-position: center;\n  background-size: cover;\n  background-repeat: no-repeat;\n  margin: 0;\n  padding: 0;\n  display: grid;\n  grid-template-rows: auto 1fr auto;\n  grid-template-areas:\n    \"header\"\n    \"main\"\n    \"footer\";\n}\n\nheader {\n  grid-area: header;\n  display: flex;\n  justify-content: center;\n  padding-top: 2rem;\n}\n\n.game-title {\n  font-size: 7rem;\n  font-weight: 600;\n}\n\n.main {\n  grid-area: main;\n  align-self: center;\n}\n\n.player-name-container {\n  background-color: #c2deec;\n  align-self: center;\n  padding: 0 1.5rem;\n  border: 1px solid #f1f3f4;\n  border-radius: 0.25rem;\n}\n\n.player1-name,\n.player2-name {\n  display: flex;\n  justify-content: center;\n  font-size: 1.9rem;\n  font-weight: 600;\n}\n\n.boards-container {\n  display: flex;\n  justify-content: center;\n  gap: 10rem;\n}\n\n.player1-board-container,\n.player2-board-container {\n  display: flex;\n  flex-direction: column;\n  gap: 1rem;\n}\n\n[class=\"player1-board\"],\n[class=\"player2-board\"] {\n  background-color: #269ad7;\n  display: grid;\n  width: 450px;\n  height: 450px;\n  display: grid;\n  grid-template-columns: repeat(10, 1fr);\n  grid-template-rows: repeat(10, 1fr);\n  gap: 0.15rem;\n  border: 10px solid #c2deec;\n  \n}\n\n.pos {\n  border: 2.5px solid #c2deec;\n}\n\n.player2-board.pos:hover {\n  cursor: crosshair;\n  border: 5px double #f54140;\n}\n\n.modal {\n  display: none;\n  position: fixed;\n  z-index: 1;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  overflow: auto;\n  background-color: rgb(0,0,0);\n  background-color: rgba(0,0,0,0.4);\n}\n\n.modal-content {\n  display: flex;\n  flex-direction: column;\n  background-color: #c2deec;\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  border: 1px solid #f1f3f4;\n  border-radius: 0.25rem;\n  padding: 1.5rem;\n  gap: 1.25rem;\n}\n\n.modal-content-txt {\n  font-size: 3rem;\n  font-weight: 600;\n}\n\n.modal-content-reset-btn {\n  align-self: center;\n  font-size: 1.5rem;\n  padding: 0 1.5rem;\n  border: 2px solid black;\n  border-radius: 0.25rem;\n}\n\n.modal-content-reset-btn:hover {\n  cursor: pointer;\n  color: white;\n  background-color: #269ad7;\n}\n\nfooter {\n  grid-area: footer;\n}", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;;GAEG;;AAEH;EACE,iCAAiC;AACnC;;AAEA;EACE,sBAAsB;AACxB;AACA;;;EAGE,mBAAmB;AACrB;;AAEA;EACE,aAAa;EACb,yDAAmC;EACnC,gGAAgG;EAChG,yBAAyB;EACzB,2BAA2B;EAC3B,sBAAsB;EACtB,4BAA4B;EAC5B,SAAS;EACT,UAAU;EACV,aAAa;EACb,iCAAiC;EACjC;;;YAGU;AACZ;;AAEA;EACE,iBAAiB;EACjB,aAAa;EACb,uBAAuB;EACvB,iBAAiB;AACnB;;AAEA;EACE,eAAe;EACf,gBAAgB;AAClB;;AAEA;EACE,eAAe;EACf,kBAAkB;AACpB;;AAEA;EACE,yBAAyB;EACzB,kBAAkB;EAClB,iBAAiB;EACjB,yBAAyB;EACzB,sBAAsB;AACxB;;AAEA;;EAEE,aAAa;EACb,uBAAuB;EACvB,iBAAiB;EACjB,gBAAgB;AAClB;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,UAAU;AACZ;;AAEA;;EAEE,aAAa;EACb,sBAAsB;EACtB,SAAS;AACX;;AAEA;;EAEE,yBAAyB;EACzB,aAAa;EACb,YAAY;EACZ,aAAa;EACb,aAAa;EACb,sCAAsC;EACtC,mCAAmC;EACnC,YAAY;EACZ,0BAA0B;;AAE5B;;AAEA;EACE,2BAA2B;AAC7B;;AAEA;EACE,iBAAiB;EACjB,0BAA0B;AAC5B;;AAEA;EACE,aAAa;EACb,eAAe;EACf,UAAU;EACV,OAAO;EACP,MAAM;EACN,WAAW;EACX,YAAY;EACZ,cAAc;EACd,4BAA4B;EAC5B,iCAAiC;AACnC;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,yBAAyB;EACzB,kBAAkB;EAClB,SAAS;EACT,QAAQ;EACR,gCAAgC;EAChC,yBAAyB;EACzB,sBAAsB;EACtB,eAAe;EACf,YAAY;AACd;;AAEA;EACE,eAAe;EACf,gBAAgB;AAClB;;AAEA;EACE,kBAAkB;EAClB,iBAAiB;EACjB,iBAAiB;EACjB,uBAAuB;EACvB,sBAAsB;AACxB;;AAEA;EACE,eAAe;EACf,YAAY;EACZ,yBAAyB;AAC3B;;AAEA;EACE,iBAAiB;AACnB","sourcesContent":["/* * {\n  border: 1px solid red;\n} */\n\n:root {\n  font-family: 'Roboto', sans-serif;\n}\n\nhtml {\n  box-sizing: border-box;\n}\n*,\n*:before,\n*:after {\n  box-sizing: inherit;\n}\n\nbody {\n  height: 100vh;\n  background-image: url(./img/bg.jpg);\n  /* background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('./img/bg.jpg'); */\n  background-color: #f1f3f4;\n  background-position: center;\n  background-size: cover;\n  background-repeat: no-repeat;\n  margin: 0;\n  padding: 0;\n  display: grid;\n  grid-template-rows: auto 1fr auto;\n  grid-template-areas:\n    \"header\"\n    \"main\"\n    \"footer\";\n}\n\nheader {\n  grid-area: header;\n  display: flex;\n  justify-content: center;\n  padding-top: 2rem;\n}\n\n.game-title {\n  font-size: 7rem;\n  font-weight: 600;\n}\n\n.main {\n  grid-area: main;\n  align-self: center;\n}\n\n.player-name-container {\n  background-color: #c2deec;\n  align-self: center;\n  padding: 0 1.5rem;\n  border: 1px solid #f1f3f4;\n  border-radius: 0.25rem;\n}\n\n.player1-name,\n.player2-name {\n  display: flex;\n  justify-content: center;\n  font-size: 1.9rem;\n  font-weight: 600;\n}\n\n.boards-container {\n  display: flex;\n  justify-content: center;\n  gap: 10rem;\n}\n\n.player1-board-container,\n.player2-board-container {\n  display: flex;\n  flex-direction: column;\n  gap: 1rem;\n}\n\n[class=\"player1-board\"],\n[class=\"player2-board\"] {\n  background-color: #269ad7;\n  display: grid;\n  width: 450px;\n  height: 450px;\n  display: grid;\n  grid-template-columns: repeat(10, 1fr);\n  grid-template-rows: repeat(10, 1fr);\n  gap: 0.15rem;\n  border: 10px solid #c2deec;\n  \n}\n\n.pos {\n  border: 2.5px solid #c2deec;\n}\n\n.player2-board.pos:hover {\n  cursor: crosshair;\n  border: 5px double #f54140;\n}\n\n.modal {\n  display: none;\n  position: fixed;\n  z-index: 1;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  overflow: auto;\n  background-color: rgb(0,0,0);\n  background-color: rgba(0,0,0,0.4);\n}\n\n.modal-content {\n  display: flex;\n  flex-direction: column;\n  background-color: #c2deec;\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  border: 1px solid #f1f3f4;\n  border-radius: 0.25rem;\n  padding: 1.5rem;\n  gap: 1.25rem;\n}\n\n.modal-content-txt {\n  font-size: 3rem;\n  font-weight: 600;\n}\n\n.modal-content-reset-btn {\n  align-self: center;\n  font-size: 1.5rem;\n  padding: 0 1.5rem;\n  border: 2px solid black;\n  border-radius: 0.25rem;\n}\n\n.modal-content-reset-btn:hover {\n  cursor: pointer;\n  color: white;\n  background-color: #269ad7;\n}\n\nfooter {\n  grid-area: footer;\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* * {\n  border: 1px solid red;\n} */\n\n:root {\n  font-family: 'Roboto', sans-serif;\n}\n\nhtml {\n  box-sizing: border-box;\n}\n*,\n*:before,\n*:after {\n  box-sizing: inherit;\n}\n\nbody {\n  height: 100vh;\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  /* background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('./img/bg.jpg'); */\n  background-color: #f1f3f4;\n  background-position: center;\n  background-size: cover;\n  background-repeat: no-repeat;\n  margin: 0;\n  padding: 0;\n  display: grid;\n  grid-template-rows: auto 1fr auto;\n  grid-template-areas:\n    \"header\"\n    \"main\"\n    \"footer\";\n}\n\nheader {\n  grid-area: header;\n  display: flex;\n  justify-content: center;\n  padding-top: 2rem;\n}\n\n.game-title {\n  font-size: 7rem;\n  font-weight: 600;\n}\n\n.main {\n  grid-area: main;\n  align-self: center;\n}\n\n.player-name-container {\n  background-color: #c2deec;\n  align-self: center;\n  padding: 0 1.5rem;\n  border: 1px solid #f1f3f4;\n  border-radius: 0.25rem;\n}\n\n.modal-place-ships-txt,\n.player1-name,\n.player2-name {\n  display: flex;\n  justify-content: center;\n  font-size: 1.9rem;\n  font-weight: 600;\n}\n\n.boards-container {\n  display: flex;\n  justify-content: center;\n  gap: 10rem;\n}\n\n.player1-board-container,\n.player2-board-container {\n  display: flex;\n  flex-direction: column;\n  gap: 1rem;\n}\n\n[class=\"modal-place-ships-board\"],\n[class=\"player1-board\"],\n[class=\"player2-board\"] {\n  background-color: #c2deec;\n  display: grid;\n  width: 450px;\n  height: 450px;\n  display: grid;\n  grid-template-columns: repeat(10, 1fr);\n  grid-template-rows: repeat(10, 1fr);\n  border: 10px solid #c2deec;\n  \n}\n\n.pos {\n  background-color: #269ad7;\n  border: 2.5px solid #c2deec;\n}\n\n.player2-board.pos:hover {\n  cursor: crosshair;\n  border: 5px double #f54140;\n}\n\n.modal-place-ships,\n.modal-game-over {\n  display: none;\n  position: fixed;\n  z-index: 1;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  overflow: auto;\n  background-color: rgb(0,0,0);\n  background-color: rgba(0,0,0,0.4);\n}\n\n.modal-place-ships-content,\n.modal-game-over-content {\n  display: flex;\n  flex-direction: column;\n  background-color: #c2deec;\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  border: 1px solid #f1f3f4;\n  border-radius: 0.25rem;\n}\n\n.modal-place-ships-content {\n  padding: 0.5rem 0 1rem 0;\n  gap: 0.5rem;\n}\n\n.modal-game-over-content {\n  padding: 1.5rem;\n  gap: 1.25rem;\n}\n\n.modal-game-over-content-txt {\n  font-size: 3rem;\n  font-weight: 600;\n}\n\n.modal-place-ships-axis-btn {\n  font-size: 1.5rem;\n  align-self: center;\n  padding: 0 1.25rem;\n  border: none;\n  border-radius: 0.25rem;\n  margin-top: 0.3rem;\n}\n\n.modal-place-ships-axis-btn:hover {\n  cursor: pointer;\n  background-image: linear-gradient(rgb(0 0 0/3%) 0 0);\n}\n\n.modal-place-ships-random-btn,\n.modal-game-over-content-reset-btn {\n  align-self: center;\n  font-size: 1.5rem;\n  padding: 0 1.5rem;\n  border: 2px solid black;\n  border-radius: 0.25rem;\n}\n\n.modal-place-ships-random-btn:hover,\n.modal-game-over-content-reset-btn:hover {\n  cursor: pointer;\n  color: white;\n  background-color: #269ad7;\n}\n\nfooter {\n  grid-area: footer;\n}", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;;GAEG;;AAEH;EACE,iCAAiC;AACnC;;AAEA;EACE,sBAAsB;AACxB;AACA;;;EAGE,mBAAmB;AACrB;;AAEA;EACE,aAAa;EACb,yDAAmC;EACnC,gGAAgG;EAChG,yBAAyB;EACzB,2BAA2B;EAC3B,sBAAsB;EACtB,4BAA4B;EAC5B,SAAS;EACT,UAAU;EACV,aAAa;EACb,iCAAiC;EACjC;;;YAGU;AACZ;;AAEA;EACE,iBAAiB;EACjB,aAAa;EACb,uBAAuB;EACvB,iBAAiB;AACnB;;AAEA;EACE,eAAe;EACf,gBAAgB;AAClB;;AAEA;EACE,eAAe;EACf,kBAAkB;AACpB;;AAEA;EACE,yBAAyB;EACzB,kBAAkB;EAClB,iBAAiB;EACjB,yBAAyB;EACzB,sBAAsB;AACxB;;AAEA;;;EAGE,aAAa;EACb,uBAAuB;EACvB,iBAAiB;EACjB,gBAAgB;AAClB;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,UAAU;AACZ;;AAEA;;EAEE,aAAa;EACb,sBAAsB;EACtB,SAAS;AACX;;AAEA;;;EAGE,yBAAyB;EACzB,aAAa;EACb,YAAY;EACZ,aAAa;EACb,aAAa;EACb,sCAAsC;EACtC,mCAAmC;EACnC,0BAA0B;;AAE5B;;AAEA;EACE,yBAAyB;EACzB,2BAA2B;AAC7B;;AAEA;EACE,iBAAiB;EACjB,0BAA0B;AAC5B;;AAEA;;EAEE,aAAa;EACb,eAAe;EACf,UAAU;EACV,OAAO;EACP,MAAM;EACN,WAAW;EACX,YAAY;EACZ,cAAc;EACd,4BAA4B;EAC5B,iCAAiC;AACnC;;AAEA;;EAEE,aAAa;EACb,sBAAsB;EACtB,yBAAyB;EACzB,kBAAkB;EAClB,SAAS;EACT,QAAQ;EACR,gCAAgC;EAChC,yBAAyB;EACzB,sBAAsB;AACxB;;AAEA;EACE,wBAAwB;EACxB,WAAW;AACb;;AAEA;EACE,eAAe;EACf,YAAY;AACd;;AAEA;EACE,eAAe;EACf,gBAAgB;AAClB;;AAEA;EACE,iBAAiB;EACjB,kBAAkB;EAClB,kBAAkB;EAClB,YAAY;EACZ,sBAAsB;EACtB,kBAAkB;AACpB;;AAEA;EACE,eAAe;EACf,oDAAoD;AACtD;;AAEA;;EAEE,kBAAkB;EAClB,iBAAiB;EACjB,iBAAiB;EACjB,uBAAuB;EACvB,sBAAsB;AACxB;;AAEA;;EAEE,eAAe;EACf,YAAY;EACZ,yBAAyB;AAC3B;;AAEA;EACE,iBAAiB;AACnB","sourcesContent":["/* * {\n  border: 1px solid red;\n} */\n\n:root {\n  font-family: 'Roboto', sans-serif;\n}\n\nhtml {\n  box-sizing: border-box;\n}\n*,\n*:before,\n*:after {\n  box-sizing: inherit;\n}\n\nbody {\n  height: 100vh;\n  background-image: url(./img/bg.jpg);\n  /* background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('./img/bg.jpg'); */\n  background-color: #f1f3f4;\n  background-position: center;\n  background-size: cover;\n  background-repeat: no-repeat;\n  margin: 0;\n  padding: 0;\n  display: grid;\n  grid-template-rows: auto 1fr auto;\n  grid-template-areas:\n    \"header\"\n    \"main\"\n    \"footer\";\n}\n\nheader {\n  grid-area: header;\n  display: flex;\n  justify-content: center;\n  padding-top: 2rem;\n}\n\n.game-title {\n  font-size: 7rem;\n  font-weight: 600;\n}\n\n.main {\n  grid-area: main;\n  align-self: center;\n}\n\n.player-name-container {\n  background-color: #c2deec;\n  align-self: center;\n  padding: 0 1.5rem;\n  border: 1px solid #f1f3f4;\n  border-radius: 0.25rem;\n}\n\n.modal-place-ships-txt,\n.player1-name,\n.player2-name {\n  display: flex;\n  justify-content: center;\n  font-size: 1.9rem;\n  font-weight: 600;\n}\n\n.boards-container {\n  display: flex;\n  justify-content: center;\n  gap: 10rem;\n}\n\n.player1-board-container,\n.player2-board-container {\n  display: flex;\n  flex-direction: column;\n  gap: 1rem;\n}\n\n[class=\"modal-place-ships-board\"],\n[class=\"player1-board\"],\n[class=\"player2-board\"] {\n  background-color: #c2deec;\n  display: grid;\n  width: 450px;\n  height: 450px;\n  display: grid;\n  grid-template-columns: repeat(10, 1fr);\n  grid-template-rows: repeat(10, 1fr);\n  border: 10px solid #c2deec;\n  \n}\n\n.pos {\n  background-color: #269ad7;\n  border: 2.5px solid #c2deec;\n}\n\n.player2-board.pos:hover {\n  cursor: crosshair;\n  border: 5px double #f54140;\n}\n\n.modal-place-ships,\n.modal-game-over {\n  display: none;\n  position: fixed;\n  z-index: 1;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  overflow: auto;\n  background-color: rgb(0,0,0);\n  background-color: rgba(0,0,0,0.4);\n}\n\n.modal-place-ships-content,\n.modal-game-over-content {\n  display: flex;\n  flex-direction: column;\n  background-color: #c2deec;\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  border: 1px solid #f1f3f4;\n  border-radius: 0.25rem;\n}\n\n.modal-place-ships-content {\n  padding: 0.5rem 0 1rem 0;\n  gap: 0.5rem;\n}\n\n.modal-game-over-content {\n  padding: 1.5rem;\n  gap: 1.25rem;\n}\n\n.modal-game-over-content-txt {\n  font-size: 3rem;\n  font-weight: 600;\n}\n\n.modal-place-ships-axis-btn {\n  font-size: 1.5rem;\n  align-self: center;\n  padding: 0 1.25rem;\n  border: none;\n  border-radius: 0.25rem;\n  margin-top: 0.3rem;\n}\n\n.modal-place-ships-axis-btn:hover {\n  cursor: pointer;\n  background-image: linear-gradient(rgb(0 0 0/3%) 0 0);\n}\n\n.modal-place-ships-random-btn,\n.modal-game-over-content-reset-btn {\n  align-self: center;\n  font-size: 1.5rem;\n  padding: 0 1.5rem;\n  border: 2px solid black;\n  border-radius: 0.25rem;\n}\n\n.modal-place-ships-random-btn:hover,\n.modal-game-over-content-reset-btn:hover {\n  cursor: pointer;\n  color: white;\n  background-color: #269ad7;\n}\n\nfooter {\n  grid-area: footer;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -560,28 +560,58 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game */ "./src/game.js");
 
 
-const displayGameboard = () => {
-  const player1Board = _game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board;
-  const player2Board = _game__WEBPACK_IMPORTED_MODULE_0__.game.computerBoard.board;
+// const displayGameboard = () => {
+//   const player1Board = game.playerBoard.board;
+//   const player2Board = game.computerBoard.board;
+//   const player1BoardDiv = document.querySelector('.player1-board');
+//   const player2BoardDiv = document.querySelector('.player2-board');
+
+//   function createPos(board, boardDiv, visible) {
+//     for (let i = 0; i < board.length; i++) {
+//       for (let j = 0; j < board[i].length; j++) {
+//         const pos = document.createElement('div');
+//         pos.classList.add(`${boardDiv.className}`, `pos`);
+//         pos.setAttribute('data-coords', `[${i},${j}]`);
+//         if (visible && board[i][j]) pos.style.backgroundColor = '#935620';
+//         boardDiv.appendChild(pos);
+//       }
+//     }
+//   }
+
+//   createPos(player1Board, player1BoardDiv, true);
+//   createPos(player2Board, player2BoardDiv);
+//   createEventListeners();
+// };
+
+const displayFlow = () => {
   const player1BoardDiv = document.querySelector('.player1-board');
   const player2BoardDiv = document.querySelector('.player2-board');
 
-  function createPos(board, boardDiv, visible) {
-    for (let i = 0; i < board.length; i++) {
-      for (let j = 0; j < board[i].length; j++) {
-        const pos = document.createElement('div');
-        pos.classList.add(`${boardDiv.className}`, `pos`);
-        pos.setAttribute('data-coords', `[${i},${j}]`);
-        if (visible && board[i][j]) pos.style.backgroundColor = '#935620';
-        boardDiv.appendChild(pos);
-      }
+  displayPlacingBoard();
+  displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, player1BoardDiv, true);
+  displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.computerBoard.board, player2BoardDiv);
+  createEventListeners();
+}
+
+const displayPlacingBoard = () => {
+  const modal = document.querySelector('.modal-place-ships');
+  const modalBoard = document.querySelector('.modal-place-ships-board');
+  modal.style.display = 'block';
+
+  displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, modalBoard,true)
+}
+
+const displayGameboard = (board, boardDiv, shipsVisible) => {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      const pos = document.createElement('div');
+      pos.classList.add(`${boardDiv.className}`, `pos`);
+      pos.setAttribute('data-coords', `[${i},${j}]`);
+      if (shipsVisible && board[i][j]) pos.style.backgroundColor = '#935620';
+      boardDiv.appendChild(pos);
     }
   }
-
-  createPos(player1Board, player1BoardDiv, true);
-  createPos(player2Board, player2BoardDiv);
-  createEventListeners();
-};
+}
 
 const displayPlayerNames = ((player1 = 'Player', player2 = 'Computer') => {
   const player1Name = document.querySelector('.player1-name');
@@ -640,15 +670,16 @@ const removeAttackEvents = () => {
 };
 
 const displayGameOver = (winner) => {
-  const modal = document.querySelector('.modal');
-  const modalTxt = document.querySelector('.modal-content-txt');
-  const modalResetBtn = document.querySelector('.modal-content-reset-btn');
+  const modal = document.querySelector('.modal-game-over');
+  const modalTxt = document.querySelector('.modal-game-over-content-txt');
+  const modalResetBtn = document.querySelector('.modal-game-over-content-reset-btn');
   modal.style.display = 'block';
   modalTxt.textContent = `${winner} wins!`;
   modalResetBtn.addEventListener('click', () => window.location.reload());
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displayGameboard);
+// export default displayGameboard;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displayFlow);
 
 
 /***/ }),
