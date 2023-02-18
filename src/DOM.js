@@ -81,9 +81,11 @@ const removeAttackEvents = () => {
 
 const displayGameOver = (winner) => {
   const modal = document.querySelector('.modal');
-  const modalContent = document.querySelector('.modal-content');
+  const modalContent = document.querySelector('.modal-content-txt');
   modal.style.display = 'block';
   modalContent.textContent = `${winner} wins!`;
 }
+
+displayGameOver('Player')
 
 export default displayGameboard;
