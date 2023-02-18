@@ -58,6 +58,7 @@ header {
   border-radius: 0.25rem;
 }
 
+.modal-place-ships-txt,
 .player1-name,
 .player2-name {
   display: flex;
@@ -79,21 +80,22 @@ header {
   gap: 1rem;
 }
 
+[class="modal-place-ships-board"],
 [class="player1-board"],
 [class="player2-board"] {
-  background-color: #269ad7;
+  background-color: #c2deec;
   display: grid;
   width: 450px;
   height: 450px;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
-  gap: 0.15rem;
   border: 10px solid #c2deec;
   
 }
 
 .pos {
+  background-color: #269ad7;
   border: 2.5px solid #c2deec;
 }
 
@@ -102,7 +104,8 @@ header {
   border: 5px double #f54140;
 }
 
-.modal {
+.modal-place-ships,
+.modal-game-over {
   display: none;
   position: fixed;
   z-index: 1;
@@ -115,7 +118,8 @@ header {
   background-color: rgba(0,0,0,0.4);
 }
 
-.modal-content {
+.modal-place-ships-content,
+.modal-game-over-content {
   display: flex;
   flex-direction: column;
   background-color: #c2deec;
@@ -125,16 +129,39 @@ header {
   transform: translate(-50%, -50%);
   border: 1px solid #f1f3f4;
   border-radius: 0.25rem;
+}
+
+.modal-place-ships-content {
+  padding: 0.5rem 0 1rem 0;
+  gap: 0.5rem;
+}
+
+.modal-game-over-content {
   padding: 1.5rem;
   gap: 1.25rem;
 }
 
-.modal-content-txt {
+.modal-game-over-content-txt {
   font-size: 3rem;
   font-weight: 600;
 }
 
-.modal-content-reset-btn {
+.modal-place-ships-axis-btn {
+  font-size: 1.5rem;
+  align-self: center;
+  padding: 0 1.25rem;
+  border: none;
+  border-radius: 0.25rem;
+  margin-top: 0.3rem;
+}
+
+.modal-place-ships-axis-btn:hover {
+  cursor: pointer;
+  background-image: linear-gradient(rgb(0 0 0/3%) 0 0);
+}
+
+.modal-place-ships-random-btn,
+.modal-game-over-content-reset-btn {
   align-self: center;
   font-size: 1.5rem;
   padding: 0 1.5rem;
@@ -142,7 +169,8 @@ header {
   border-radius: 0.25rem;
 }
 
-.modal-content-reset-btn:hover {
+.modal-place-ships-random-btn:hover,
+.modal-game-over-content-reset-btn:hover {
   cursor: pointer;
   color: white;
   background-color: #269ad7;

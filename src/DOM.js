@@ -1,27 +1,57 @@
 import { game } from './game';
 
-const displayGameboard = () => {
-  const player1Board = game.playerBoard.board;
-  const player2Board = game.computerBoard.board;
+// const displayGameboard = () => {
+//   const player1Board = game.playerBoard.board;
+//   const player2Board = game.computerBoard.board;
+//   const player1BoardDiv = document.querySelector('.player1-board');
+//   const player2BoardDiv = document.querySelector('.player2-board');
+
+//   function createPos(board, boardDiv, visible) {
+//     for (let i = 0; i < board.length; i++) {
+//       for (let j = 0; j < board[i].length; j++) {
+//         const pos = document.createElement('div');
+//         pos.classList.add(`${boardDiv.className}`, `pos`);
+//         pos.setAttribute('data-coords', `[${i},${j}]`);
+//         if (visible && board[i][j]) pos.style.backgroundColor = '#935620';
+//         boardDiv.appendChild(pos);
+//       }
+//     }
+//   }
+
+//   createPos(player1Board, player1BoardDiv, true);
+//   createPos(player2Board, player2BoardDiv);
+//   createEventListeners();
+// };
+
+const displayFlow = () => {
   const player1BoardDiv = document.querySelector('.player1-board');
   const player2BoardDiv = document.querySelector('.player2-board');
 
-  function createPos(board, boardDiv, visible) {
-    for (let i = 0; i < board.length; i++) {
-      for (let j = 0; j < board[i].length; j++) {
-        const pos = document.createElement('div');
-        pos.classList.add(`${boardDiv.className}`, `pos`);
-        pos.setAttribute('data-coords', `[${i},${j}]`);
-        if (visible && board[i][j]) pos.style.backgroundColor = '#935620';
-        boardDiv.appendChild(pos);
-      }
+  displayPlacingBoard();
+  displayGameboard(game.playerBoard.board, player1BoardDiv, true);
+  displayGameboard(game.computerBoard.board, player2BoardDiv);
+  createEventListeners();
+}
+
+const displayPlacingBoard = () => {
+  const modal = document.querySelector('.modal-place-ships');
+  const modalBoard = document.querySelector('.modal-place-ships-board');
+  modal.style.display = 'block';
+
+  displayGameboard(game.playerBoard.board, modalBoard,true)
+}
+
+const displayGameboard = (board, boardDiv, shipsVisible) => {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      const pos = document.createElement('div');
+      pos.classList.add(`${boardDiv.className}`, `pos`);
+      pos.setAttribute('data-coords', `[${i},${j}]`);
+      if (shipsVisible && board[i][j]) pos.style.backgroundColor = '#935620';
+      boardDiv.appendChild(pos);
     }
   }
-
-  createPos(player1Board, player1BoardDiv, true);
-  createPos(player2Board, player2BoardDiv);
-  createEventListeners();
-};
+}
 
 const displayPlayerNames = ((player1 = 'Player', player2 = 'Computer') => {
   const player1Name = document.querySelector('.player1-name');
@@ -80,12 +110,13 @@ const removeAttackEvents = () => {
 };
 
 const displayGameOver = (winner) => {
-  const modal = document.querySelector('.modal');
-  const modalTxt = document.querySelector('.modal-content-txt');
-  const modalResetBtn = document.querySelector('.modal-content-reset-btn');
+  const modal = document.querySelector('.modal-game-over');
+  const modalTxt = document.querySelector('.modal-game-over-content-txt');
+  const modalResetBtn = document.querySelector('.modal-game-over-content-reset-btn');
   modal.style.display = 'block';
   modalTxt.textContent = `${winner} wins!`;
   modalResetBtn.addEventListener('click', () => window.location.reload());
 };
 
-export default displayGameboard;
+// export default displayGameboard;
+export default displayFlow;
