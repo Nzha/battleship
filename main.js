@@ -750,7 +750,7 @@ const Gameboard = (size = 10) => {
   const placeShip = (ship, coords, axis = 'horizontal') => {
     // Place ship in random position if no coords
     if (!coords) {
-      randPlaceShip(ship, coords, axis);
+      randPlaceShip(ship, randNewPos(board), randAxis());
     } else {
       if (
         coords[0] < 0 ||
@@ -778,11 +778,7 @@ const Gameboard = (size = 10) => {
     }
   };
 
-  const randPlaceShip = (
-    ship,
-    coords = randNewPos(board),
-    axis = 'horizontal'
-  ) => {
+  const randPlaceShip = (ship, coords, axis) => {
     let placementSuccessful = false;
     while (!placementSuccessful) {
       const result = placeShip(ship, coords, axis);
@@ -849,6 +845,12 @@ const randNewPos = (board) => {
   let randomIndex = Math.floor(Math.random() * posNotShot.length);
   let randomPosNotShot = posNotShot[randomIndex];
   return randomPosNotShot;
+};
+
+const randAxis = () => {
+  const axis = ['horizontal', 'vertical'];
+  let randomIndex = Math.floor(Math.random() * axis.length);
+  return axis[randomIndex];
 };
 
 
