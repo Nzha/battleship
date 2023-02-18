@@ -81,11 +81,11 @@ const removeAttackEvents = () => {
 
 const displayGameOver = (winner) => {
   const modal = document.querySelector('.modal');
-  const modalContent = document.querySelector('.modal-content-txt');
+  const modalTxt = document.querySelector('.modal-content-txt');
+  const modalResetBtn = document.querySelector('.modal-content-reset-btn');
   modal.style.display = 'block';
-  modalContent.textContent = `${winner} wins!`;
-}
-
-displayGameOver('Player')
+  modalTxt.textContent = `${winner} wins!`;
+  modalResetBtn.addEventListener('click', () => window.location.reload());
+};
 
 export default displayGameboard;
