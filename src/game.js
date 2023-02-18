@@ -46,9 +46,6 @@ const game = (() => {
     computerBoard.placeShip(ship);
   });
 
-  // console.log(player.attack([9, 0]));
-  // console.log(computer.attack());
-
   console.log(playerBoard.board);
   console.log(computerBoard.board);
 

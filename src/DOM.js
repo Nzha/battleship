@@ -54,6 +54,7 @@ const handleAttacks = (e) => {
 
   if (computerAttack.includes('Game Over')) {
     removeAttackEvents();
+    displayGameOver();
     return;
   }
   console.log(game.computerBoard.board);
@@ -76,5 +77,9 @@ const removeAttackEvents = () => {
     computerPosition.removeEventListener('click', handleAttacks)
   );
 };
+
+const displayGameOver = () => {
+
+}
 
 export default displayGameboard;
