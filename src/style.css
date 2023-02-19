@@ -146,8 +146,16 @@ header {
   font-weight: 600;
 }
 
-.modal-place-ships-axis-btn {
-  font-size: 1.5rem;
+.modal-place-ships-top-btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.modal-place-ships-axis-btn,
+.modal-place-ships-random-btn,
+.modal-place-ships-clear-btn {
+  font-size: 1.25rem;
   align-self: center;
   padding: 0 1.25rem;
   border: none;
@@ -155,21 +163,23 @@ header {
   margin-top: 0.3rem;
 }
 
-.modal-place-ships-axis-btn:hover {
+.modal-place-ships-random-btn:hover,
+.modal-place-ships-axis-btn:hover,
+.modal-place-ships-clear-btn:hover {
   cursor: pointer;
   background-image: linear-gradient(rgb(0 0 0/3%) 0 0);
 }
 
-.modal-place-ships-random-btn,
+.modal-place-ships-play-btn,
 .modal-game-over-content-reset-btn {
   align-self: center;
-  font-size: 1.5rem;
-  padding: 0 1.5rem;
   border: 2px solid black;
   border-radius: 0.25rem;
+  font-size: 1.5rem;
+  padding: 0 1.5rem;
 }
 
-.modal-place-ships-random-btn:hover,
+.modal-place-ships-play-btn:hover,
 .modal-game-over-content-reset-btn:hover {
   cursor: pointer;
   color: white;
