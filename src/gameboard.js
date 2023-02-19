@@ -1,7 +1,7 @@
 import { ships } from './game';
 
 const Gameboard = (size = 10) => {
-  const board = Array.from(Array(size), () => new Array(size));
+  let board = Array.from(Array(size), () => new Array(size));
 
   const placeShip = (ship, coords, axis = 'horizontal') => {
     // Place ship in random position if no coords
@@ -82,7 +82,15 @@ const Gameboard = (size = 10) => {
     }
   };
 
-  return { board, placeShip, receiveAttack, gameOver };
+  const resetBoard = (board) => {
+    for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j < board[i].length; j++) {
+        board[i][j] = undefined;
+      }
+    }
+  };
+
+  return { board, placeShip, receiveAttack, gameOver, resetBoard };
 };
 
 const randNewPos = (board) => {

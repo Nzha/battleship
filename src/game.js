@@ -36,10 +36,12 @@ const game = (() => {
     patrol2
   );
 
-  const playerShips = ships.filter((ship) => ship.player === 'Player1');
-  playerShips.forEach((ship) => {
-    playerBoard.placeShip(ship);
-  });
+  const randPlayerShips = () => {
+    const playerShips = ships.filter((ship) => ship.player === 'Player1');
+    playerShips.forEach((ship) => {
+      playerBoard.placeShip(ship);
+    });
+  };
 
   const computerShips = ships.filter((ship) => ship.player === 'Player2');
   computerShips.forEach((ship) => {
@@ -53,7 +55,8 @@ const game = (() => {
     playerBoard,
     computerBoard,
     player,
-    computer
+    computer,
+    randPlayerShips,
   };
 })();
 

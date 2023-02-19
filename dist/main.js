@@ -560,29 +560,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game */ "./src/game.js");
 
 
-// const displayGameboard = () => {
-//   const player1Board = game.playerBoard.board;
-//   const player2Board = game.computerBoard.board;
-//   const player1BoardDiv = document.querySelector('.player1-board');
-//   const player2BoardDiv = document.querySelector('.player2-board');
-
-//   function createPos(board, boardDiv, visible) {
-//     for (let i = 0; i < board.length; i++) {
-//       for (let j = 0; j < board[i].length; j++) {
-//         const pos = document.createElement('div');
-//         pos.classList.add(`${boardDiv.className}`, `pos`);
-//         pos.setAttribute('data-coords', `[${i},${j}]`);
-//         if (visible && board[i][j]) pos.style.backgroundColor = '#935620';
-//         boardDiv.appendChild(pos);
-//       }
-//     }
-//   }
-
-//   createPos(player1Board, player1BoardDiv, true);
-//   createPos(player2Board, player2BoardDiv);
-//   createEventListeners();
-// };
-
 const displayFlow = () => {
   const player1BoardDiv = document.querySelector('.player1-board');
   const player2BoardDiv = document.querySelector('.player2-board');
@@ -591,17 +568,32 @@ const displayFlow = () => {
   displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, player1BoardDiv, true);
   displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.computerBoard.board, player2BoardDiv);
   createEventListeners();
-}
+};
 
 const displayPlacingBoard = () => {
   const modal = document.querySelector('.modal-place-ships');
   const modalBoard = document.querySelector('.modal-place-ships-board');
+  const randBtn = document.querySelector('.modal-place-ships-random-btn');
   modal.style.display = 'block';
 
-  displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, modalBoard,true)
-}
+  displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, modalBoard, true);
+
+  randBtn.addEventListener('click', randShipPlacement);
+};
+
+const randShipPlacement = () => {
+  const modalBoard = document.querySelector('.modal-place-ships-board');
+  const player1BoardDiv = document.querySelector('.player1-board');
+
+  _game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.resetBoard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board), _game__WEBPACK_IMPORTED_MODULE_0__.game.randPlayerShips();
+  displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, modalBoard, true);
+  displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, player1BoardDiv, true);
+};
 
 const displayGameboard = (board, boardDiv, shipsVisible) => {
+  // Reset board if one exists already
+  if (boardDiv.hasChildNodes()) boardDiv.innerHTML = '';
+
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
       const pos = document.createElement('div');
@@ -611,7 +603,7 @@ const displayGameboard = (board, boardDiv, shipsVisible) => {
       boardDiv.appendChild(pos);
     }
   }
-}
+};
 
 const displayPlayerNames = ((player1 = 'Player', player2 = 'Computer') => {
   const player1Name = document.querySelector('.player1-name');
@@ -672,7 +664,9 @@ const removeAttackEvents = () => {
 const displayGameOver = (winner) => {
   const modal = document.querySelector('.modal-game-over');
   const modalTxt = document.querySelector('.modal-game-over-content-txt');
-  const modalResetBtn = document.querySelector('.modal-game-over-content-reset-btn');
+  const modalResetBtn = document.querySelector(
+    '.modal-game-over-content-reset-btn'
+  );
   modal.style.display = 'block';
   modalTxt.textContent = `${winner} wins!`;
   modalResetBtn.addEventListener('click', () => window.location.reload());
@@ -736,10 +730,12 @@ const game = (() => {
     patrol2
   );
 
-  const playerShips = ships.filter((ship) => ship.player === 'Player1');
-  playerShips.forEach((ship) => {
-    playerBoard.placeShip(ship);
-  });
+  const randPlayerShips = () => {
+    const playerShips = ships.filter((ship) => ship.player === 'Player1');
+    playerShips.forEach((ship) => {
+      playerBoard.placeShip(ship);
+    });
+  };
 
   const computerShips = ships.filter((ship) => ship.player === 'Player2');
   computerShips.forEach((ship) => {
@@ -753,9 +749,11 @@ const game = (() => {
     playerBoard,
     computerBoard,
     player,
-    computer
+    computer,
+    randPlayerShips,
   };
 })();
+
 
 
 
@@ -776,7 +774,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const Gameboard = (size = 10) => {
-  const board = Array.from(Array(size), () => new Array(size));
+  let board = Array.from(Array(size), () => new Array(size));
 
   const placeShip = (ship, coords, axis = 'horizontal') => {
     // Place ship in random position if no coords
@@ -857,7 +855,15 @@ const Gameboard = (size = 10) => {
     }
   };
 
-  return { board, placeShip, receiveAttack, gameOver };
+  const resetBoard = (board) => {
+    for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j < board[i].length; j++) {
+        board[i][j] = undefined;
+      }
+    }
+  };
+
+  return { board, placeShip, receiveAttack, gameOver, resetBoard };
 };
 
 const randNewPos = (board) => {
