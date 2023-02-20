@@ -574,20 +574,34 @@ const displayPlacingBoard = () => {
   const modal = document.querySelector('.modal-place-ships');
   const modalBoard = document.querySelector('.modal-place-ships-board');
   const randBtn = document.querySelector('.modal-place-ships-random-btn');
+  const clearBtn = document.querySelector('.modal-place-ships-clear-btn');
+  const playBtn = document.querySelector('.modal-place-ships-play-btn');
   modal.style.display = 'block';
 
-  displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, modalBoard, true);
+  randBtn.addEventListener('click', () => {
+    _game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.resetBoard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board);
+    _game__WEBPACK_IMPORTED_MODULE_0__.game.randPlayerShips();
+    updatePlayerDisplayBoards();
+  });
 
-  randBtn.addEventListener('click', randShipPlacement);
+  clearBtn.addEventListener('click', () => {
+    _game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.resetBoard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board);
+    updatePlayerDisplayBoards();
+  });
+
+  // TODO: check if all ships have been placed before being able to play
+  playBtn.addEventListener('click', () => {
+    modal.remove();
+  });
+
+  displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, modalBoard, true);
 };
 
-const randShipPlacement = () => {
-  const modalBoard = document.querySelector('.modal-place-ships-board');
-  const player1BoardDiv = document.querySelector('.player1-board');
-
-  _game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.resetBoard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board), _game__WEBPACK_IMPORTED_MODULE_0__.game.randPlayerShips();
-  displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, modalBoard, true);
-  displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, player1BoardDiv, true);
+const updatePlayerDisplayBoards = () => {
+  const playerModalBoard = document.querySelector('.modal-place-ships-board');
+  const playerBoardDiv = document.querySelector('.player1-board');
+  displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, playerModalBoard, true);
+  displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, playerBoardDiv, true);
 };
 
 const displayGameboard = (board, boardDiv, shipsVisible) => {
@@ -672,7 +686,6 @@ const displayGameOver = (winner) => {
   modalResetBtn.addEventListener('click', () => window.location.reload());
 };
 
-// export default displayGameboard;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displayFlow);
 
 
