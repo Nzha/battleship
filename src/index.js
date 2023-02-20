@@ -1,4 +1,4 @@
 import './style.css';
-import displayGameboard from './DOM';
+import displayFlow from './DOM';
 
-displayGameboard();
+displayFlow();
