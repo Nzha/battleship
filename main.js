@@ -589,11 +589,8 @@ const displayPlacingBoard = () => {
     updatePlayerDisplayBoards();
   });
 
-  // TODO: check if all ships have been placed before being able to play
   playBtn.addEventListener('click', () => {
-    console.log(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.allShipsPlaced(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board));
-    console.log(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board)
-    // modal.remove();
+    if (_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.allShipsPlaced(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board)) modal.remove();
   });
 
   displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, modalBoard, true);
@@ -890,12 +887,12 @@ const Gameboard = (size = 10) => {
   };
 
   const allShipsPlaced = (board) => {
-    const positionsOccupied = board.flat().filter(Boolean).length;
+    const posOccupied = board.flat().filter(Boolean).length;
     const totalShipsLength = _game__WEBPACK_IMPORTED_MODULE_0__.ships.reduce(
       (total, ship) => total + ship.length,
       0
     );
-    return positionsOccupied === totalShipsLength / 2;
+    return posOccupied === totalShipsLength / 2;
   };
 
   return {
