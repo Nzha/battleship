@@ -890,13 +890,12 @@ const Gameboard = (size = 10) => {
   };
 
   const allShipsPlaced = (board) => {
-    let count = 0;
-    for (let i = 0; i < board.length; i++) {
-      for (let j = 0; j < board[i].length; j++) {
-        if (board[i][j] !== undefined) count += 1;
-      }
-    }
-    return count;
+    const positionsOccupied = board.flat().filter(Boolean).length;
+    const totalShipsLength = _game__WEBPACK_IMPORTED_MODULE_0__.ships.reduce(
+      (total, ship) => total + ship.length,
+      0
+    );
+    return positionsOccupied === totalShipsLength / 2;
   };
 
   return {
