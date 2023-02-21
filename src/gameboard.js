@@ -100,12 +100,12 @@ const Gameboard = (size = 10) => {
   };
 
   const allShipsPlaced = (board) => {
-    const positionsOccupied = board.flat().filter(Boolean).length;
+    const posOccupied = board.flat().filter(Boolean).length;
     const totalShipsLength = ships.reduce(
       (total, ship) => total + ship.length,
       0
     );
-    return positionsOccupied === totalShipsLength / 2;
+    return posOccupied === totalShipsLength / 2;
   };
 
   return {
