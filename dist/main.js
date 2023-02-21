@@ -591,11 +591,15 @@ const displayPlacingBoard = () => {
 
   // TODO: check if all ships have been placed before being able to play
   playBtn.addEventListener('click', () => {
-    modal.remove();
+    console.log(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.allShipsPlaced(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board));
+    console.log(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board)
+    // modal.remove();
   });
 
   displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, modalBoard, true);
 };
+
+const allShipsPlaced = (board) => {};
 
 const updatePlayerDisplayBoards = () => {
   const playerModalBoard = document.querySelector('.modal-place-ships-board');
@@ -800,22 +804,31 @@ const Gameboard = (size = 10) => {
         coords[1] < 0 ||
         coords[1] > size
       )
-        return 'Move out of bounds';
+        return 'Ship placement out of bounds';
+
+      // Create array of the specific cells that the ship would occupy
+      const cellsToCheck = [];
+
       if (axis === 'horizontal') {
+        if (coords[1] + ship.length > size) return 'Placement out of bounds';
         for (let i = coords[1]; i < coords[1] + ship.length; i++) {
-          if (coords[1] + ship.length > size) return;
           if (board[coords[0]][i] !== undefined)
-            return 'There is already a ship in this location';
-          board[coords[0]][i] = ship.name;
+            return 'Ship placement overlaps with another ship';
+          cellsToCheck.push([coords[0], i]);
         }
       } else if (axis === 'vertical') {
+        if (coords[0] + ship.length > size) return 'Placement out of bounds';
         for (let j = coords[0]; j < coords[0] + ship.length; j++) {
-          if (coords[0] + ship.length > size) return;
           if (board[j][coords[1]] !== undefined)
-            return 'There is already a ship in this location';
-          board[j][coords[1]] = ship.name;
+            return 'Ship placement overlaps with another ship';
+          cellsToCheck.push([j, coords[1]]);
         }
       }
+
+      for (const [row, col] of cellsToCheck) {
+        board[row][col] = ship.name;
+      }
+
       return 'Placement successful';
     }
   };
@@ -876,7 +889,24 @@ const Gameboard = (size = 10) => {
     }
   };
 
-  return { board, placeShip, receiveAttack, gameOver, resetBoard };
+  const allShipsPlaced = (board) => {
+    let count = 0;
+    for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j < board[i].length; j++) {
+        if (board[i][j] !== undefined) count += 1;
+      }
+    }
+    return count;
+  };
+
+  return {
+    board,
+    placeShip,
+    receiveAttack,
+    gameOver,
+    resetBoard,
+    allShipsPlaced,
+  };
 };
 
 const randNewPos = (board) => {

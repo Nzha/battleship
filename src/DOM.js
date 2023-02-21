@@ -31,11 +31,15 @@ const displayPlacingBoard = () => {
 
   // TODO: check if all ships have been placed before being able to play
   playBtn.addEventListener('click', () => {
-    modal.remove();
+    console.log(game.playerBoard.allShipsPlaced(game.playerBoard.board));
+    console.log(game.playerBoard.board)
+    // modal.remove();
   });
 
   displayGameboard(game.playerBoard.board, modalBoard, true);
 };
+
+const allShipsPlaced = (board) => {};
 
 const updatePlayerDisplayBoards = () => {
   const playerModalBoard = document.querySelector('.modal-place-ships-board');
