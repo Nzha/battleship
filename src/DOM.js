@@ -21,7 +21,9 @@ const displayPlacingBoard = () => {
   modal.style.display = 'block';
 
   rotateBtn.addEventListener('click', () => {
-    const axis = rotateBtn.classList.contains('horizontal') ? 'vertical' : 'horizontal';
+    const axis = rotateBtn.classList.contains('horizontal')
+      ? 'vertical'
+      : 'horizontal';
     rotateBtn.classList.remove('horizontal', 'vertical');
     rotateBtn.classList.add(axis);
   });
@@ -45,27 +47,40 @@ const displayPlacingBoard = () => {
 };
 
 const displayPlacingShips = () => {
-  const modalPositions = document.querySelectorAll('.modal-place-ships-board.pos');
-  modalPositions.forEach(modalPosition => {
-    modalPosition.addEventListener('mouseenter', (e) => {
+  const modalPositions = document.querySelectorAll(
+    '.modal-place-ships-board.pos'
+  );
+  const rotateBtn = document.querySelector('.modal-place-ships-axis-btn');
+  let nextTarget1;
+
+  modalPositions.forEach((modalPosition) => {
+    modalPosition.addEventListener('mouseover', (e) => {
       const x = Number(e.target.dataset.coords[1]);
-      let y = Number(e.target.dataset.coords[3]);
-      let coords = [x,y];
-      const target = document.querySelector(`[data-coords="${e.target.dataset.coords}"]`)
-      let y2 = y + 1;
-      let coords2 = JSON.stringify([x,y2])
-      const nextTarget1 = document.querySelector(`[data-coords="${coords2}"]`)
-      e.target.style.backgroundColor = 'red';
-      nextTarget1.style.backgroundColor = 'red';
-    })
-  })
-  modalPositions.forEach(modalPosition => {
-    modalPosition.addEventListener('mouseleave', (e) => {
+      const y = Number(e.target.dataset.coords[3]);
+      const target = document.querySelector(
+        `[data-coords="${e.target.dataset.coords}"]`
+      );
+
+      if (rotateBtn.classList.contains('horizontal')) {
+        const coords2 = JSON.stringify([x, y + 1]);
+        nextTarget1 = document.querySelector(`[data-coords="${coords2}"]`);
+      } else {
+        const coords2 = JSON.stringify([x + 1, y]);
+        nextTarget1 = document.querySelector(`[data-coords="${coords2}"]`);
+      }
+
+      e.target.style.backgroundColor = '#935620';
+      nextTarget1.style.backgroundColor = '#935620';
+    });
+  });
+
+  modalPositions.forEach((modalPosition) => {
+    modalPosition.addEventListener('mouseout', (e) => {
       e.target.style.backgroundColor = '#269ad7';
       nextTarget1.style.backgroundColor = '#269ad7';
-    })
-  })
-}
+    });
+  });
+};
 
 const updatePlayerDisplayBoards = () => {
   const playerModalBoard = document.querySelector('.modal-place-ships-board');
