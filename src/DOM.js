@@ -51,7 +51,9 @@ const displayPlacingShips = () => {
     '.modal-place-ships-board.pos'
   );
   const rotateBtn = document.querySelector('.modal-place-ships-axis-btn');
-  let nextTarget1;
+  const nextPositions = []
+
+  let length = 5;
 
   modalPositions.forEach((modalPosition) => {
     modalPosition.addEventListener('mouseover', (e) => {
@@ -61,24 +63,30 @@ const displayPlacingShips = () => {
         `[data-coords="${e.target.dataset.coords}"]`
       );
 
-      if (rotateBtn.classList.contains('horizontal')) {
-        const coords2 = JSON.stringify([x, y + 1]);
-        nextTarget1 = document.querySelector(`[data-coords="${coords2}"]`);
-      } else {
-        const coords2 = JSON.stringify([x + 1, y]);
-        nextTarget1 = document.querySelector(`[data-coords="${coords2}"]`);
+      target.style.backgroundColor = '#935620';
+
+      for (let i = 1; i < length; i++) {
+        const nextX = rotateBtn.classList.contains('horizontal') ? x : x + i;
+        const nextY = rotateBtn.classList.contains('vertical') ? y : y + i;
+        const coords = JSON.stringify([nextX, nextY]);
+        const nextPos = document.querySelector(`[data-coords="${coords}"]`);
+        if (nextPos) {
+          nextPositions.push(nextPos);
+          nextPos.style.backgroundColor = '#935620';
+        }
       }
 
-      e.target.style.backgroundColor = '#935620';
-      nextTarget1.style.backgroundColor = '#935620';
     });
   });
 
   modalPositions.forEach((modalPosition) => {
     modalPosition.addEventListener('mouseout', (e) => {
       e.target.style.backgroundColor = '#269ad7';
-      nextTarget1.style.backgroundColor = '#269ad7';
+      nextPositions.forEach((nextPos) => {
+        nextPos.style.backgroundColor = '#269ad7';
+      })
     });
+    nextPositions.length = 0;
   });
 };
 
