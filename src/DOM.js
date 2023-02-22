@@ -5,6 +5,7 @@ const displayFlow = () => {
   const player2BoardDiv = document.querySelector('.player2-board');
 
   displayPlacingBoard();
+  displayPlacingShips();
   displayGameboard(game.playerBoard.board, player1BoardDiv, true);
   displayGameboard(game.computerBoard.board, player2BoardDiv);
   createEventListeners();
@@ -13,10 +14,17 @@ const displayFlow = () => {
 const displayPlacingBoard = () => {
   const modal = document.querySelector('.modal-place-ships');
   const modalBoard = document.querySelector('.modal-place-ships-board');
+  const rotateBtn = document.querySelector('.modal-place-ships-axis-btn');
   const randBtn = document.querySelector('.modal-place-ships-random-btn');
   const clearBtn = document.querySelector('.modal-place-ships-clear-btn');
   const playBtn = document.querySelector('.modal-place-ships-play-btn');
   modal.style.display = 'block';
+
+  rotateBtn.addEventListener('click', () => {
+    const axis = rotateBtn.classList.contains('horizontal') ? 'vertical' : 'horizontal';
+    rotateBtn.classList.remove('horizontal', 'vertical');
+    rotateBtn.classList.add(axis);
+  });
 
   randBtn.addEventListener('click', () => {
     game.playerBoard.resetBoard(game.playerBoard.board);
@@ -35,6 +43,29 @@ const displayPlacingBoard = () => {
 
   displayGameboard(game.playerBoard.board, modalBoard, true);
 };
+
+const displayPlacingShips = () => {
+  const modalPositions = document.querySelectorAll('.modal-place-ships-board.pos');
+  modalPositions.forEach(modalPosition => {
+    modalPosition.addEventListener('mouseenter', (e) => {
+      const x = Number(e.target.dataset.coords[1]);
+      let y = Number(e.target.dataset.coords[3]);
+      let coords = [x,y];
+      const target = document.querySelector(`[data-coords="${e.target.dataset.coords}"]`)
+      let y2 = y + 1;
+      let coords2 = JSON.stringify([x,y2])
+      const nextTarget1 = document.querySelector(`[data-coords="${coords2}"]`)
+      e.target.style.backgroundColor = 'red';
+      nextTarget1.style.backgroundColor = 'red';
+    })
+  })
+  modalPositions.forEach(modalPosition => {
+    modalPosition.addEventListener('mouseleave', (e) => {
+      e.target.style.backgroundColor = '#269ad7';
+      nextTarget1.style.backgroundColor = '#269ad7';
+    })
+  })
+}
 
 const updatePlayerDisplayBoards = () => {
   const playerModalBoard = document.querySelector('.modal-place-ships-board');

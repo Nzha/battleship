@@ -170,6 +170,10 @@ header {
   background-image: linear-gradient(rgb(0 0 0/3%) 0 0);
 }
 
+.modal-place-ships-board.pos:hover {
+  cursor: pointer;
+}
+
 .modal-place-ships-play-btn,
 .modal-game-over-content-reset-btn {
   align-self: center;
