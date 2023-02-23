@@ -565,7 +565,7 @@ const displayFlow = () => {
   const player2BoardDiv = document.querySelector('.player2-board');
 
   displayPlacingBoard();
-  displayPlacingShips(_game__WEBPACK_IMPORTED_MODULE_0__.ships[0]);
+  displayPlacingShips();
   displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, player1BoardDiv, true);
   displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.computerBoard.board, player2BoardDiv);
   createEventListeners();
@@ -597,6 +597,7 @@ const displayPlacingBoard = () => {
   clearBtn.addEventListener('click', () => {
     _game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.resetBoard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board);
     updatePlayerDisplayBoards();
+    displayPlacingShips()
   });
 
   playBtn.addEventListener('click', () => {
@@ -606,7 +607,7 @@ const displayPlacingBoard = () => {
   displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, modalBoard, true);
 };
 
-const displayPlacingShips = (ship) => {
+const displayPlacingShips = (ship = _game__WEBPACK_IMPORTED_MODULE_0__.ships[0]) => {
   const modalBoardPositions = document.querySelectorAll(
     '.modal-place-ships-board.pos'
   );
@@ -641,8 +642,10 @@ const displayPlacingShips = (ship) => {
 
   modalBoardPositions.forEach((position) => {
     position.addEventListener('mouseout', (e) => {
+      if (e.target.classList.contains('occupied')) return
       e.target.style.backgroundColor = '#269ad7';
       nextPositions.forEach((nextPos) => {
+        if (nextPos.classList.contains('occupied')) return
         nextPos.style.backgroundColor = '#269ad7';
       });
     });
@@ -656,7 +659,9 @@ const displayPlacingShips = (ship) => {
       let axis = rotateBtn.classList.contains('horizontal') ? 'horizontal' : 'vertical';
       _game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.placeShip(_game__WEBPACK_IMPORTED_MODULE_0__.ships[shipIndex], coords, axis)
       updatePlayerDisplayBoards();
+      console.log(shipIndex)
       shipIndex += 1;
+      console.log(shipIndex)
       displayPlacingShips(_game__WEBPACK_IMPORTED_MODULE_0__.ships[shipIndex])
       console.log(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board)
     })
@@ -679,7 +684,10 @@ const displayGameboard = (board, boardDiv, shipsVisible) => {
       const pos = document.createElement('div');
       pos.classList.add(`${boardDiv.className}`, `pos`);
       pos.setAttribute('data-coords', `[${i},${j}]`);
-      if (shipsVisible && board[i][j]) pos.style.backgroundColor = '#935620';
+      if (shipsVisible && board[i][j]) {
+        pos.style.backgroundColor = '#935620';
+        pos.classList.add('occupied');
+      }
       boardDiv.appendChild(pos);
     }
   }
