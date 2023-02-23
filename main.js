@@ -565,7 +565,7 @@ const displayFlow = () => {
   const player2BoardDiv = document.querySelector('.player2-board');
 
   displayPlacingBoard();
-  displayPlacingShips();
+  displayPlacingShips(_game__WEBPACK_IMPORTED_MODULE_0__.ships[0]);
   displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, player1BoardDiv, true);
   displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.computerBoard.board, player2BoardDiv);
   createEventListeners();
@@ -606,17 +606,18 @@ const displayPlacingBoard = () => {
   displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, modalBoard, true);
 };
 
-const displayPlacingShips = () => {
-  const modalPositions = document.querySelectorAll(
+const displayPlacingShips = (ship) => {
+  const modalBoardPositions = document.querySelectorAll(
     '.modal-place-ships-board.pos'
   );
   const rotateBtn = document.querySelector('.modal-place-ships-axis-btn');
-  const nextPositions = []
+  const nextPositions = [];
 
-  let length = 5;
+  let length = ship.length;
+  let shipIndex = 0;
 
-  modalPositions.forEach((modalPosition) => {
-    modalPosition.addEventListener('mouseover', (e) => {
+  modalBoardPositions.forEach((position) => {
+    position.addEventListener('mouseover', (e) => {
       const x = Number(e.target.dataset.coords[1]);
       const y = Number(e.target.dataset.coords[3]);
       const target = document.querySelector(
@@ -635,18 +636,30 @@ const displayPlacingShips = () => {
           nextPos.style.backgroundColor = '#935620';
         }
       }
-
     });
   });
 
-  modalPositions.forEach((modalPosition) => {
-    modalPosition.addEventListener('mouseout', (e) => {
+  modalBoardPositions.forEach((position) => {
+    position.addEventListener('mouseout', (e) => {
       e.target.style.backgroundColor = '#269ad7';
       nextPositions.forEach((nextPos) => {
         nextPos.style.backgroundColor = '#269ad7';
-      })
+      });
     });
     nextPositions.length = 0;
+  });
+
+  modalBoardPositions.forEach((position) => {
+    position.addEventListener('click', (e) => {
+      let coordsStr = e.target.dataset.coords;
+      let coords = JSON.parse(coordsStr);
+      let axis = rotateBtn.classList.contains('horizontal') ? 'horizontal' : 'vertical';
+      _game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.placeShip(_game__WEBPACK_IMPORTED_MODULE_0__.ships[shipIndex], coords, axis)
+      updatePlayerDisplayBoards();
+      shipIndex += 1;
+      displayPlacingShips(_game__WEBPACK_IMPORTED_MODULE_0__.ships[shipIndex])
+      console.log(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board)
+    })
   });
 };
 
