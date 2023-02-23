@@ -4,14 +4,14 @@ const displayFlow = () => {
   const player1BoardDiv = document.querySelector('.player1-board');
   const player2BoardDiv = document.querySelector('.player2-board');
 
-  displayPlacingBoard();
-  displayPlacingShips();
-  displayGameboard(game.playerBoard.board, player1BoardDiv, true);
-  displayGameboard(game.computerBoard.board, player2BoardDiv);
+  showPlacingBoard();
+  showPlacingShips();
+  showGameboard(game.playerBoard.board, player1BoardDiv, true);
+  showGameboard(game.computerBoard.board, player2BoardDiv);
   createEventListeners();
 };
 
-const displayPlacingBoard = () => {
+const showPlacingBoard = () => {
   const modal = document.querySelector('.modal-place-ships');
   const modalBoard = document.querySelector('.modal-place-ships-board');
   const rotateBtn = document.querySelector('.modal-place-ships-axis-btn');
@@ -37,17 +37,17 @@ const displayPlacingBoard = () => {
   clearBtn.addEventListener('click', () => {
     game.playerBoard.resetBoard(game.playerBoard.board);
     updatePlayerDisplayBoards();
-    displayPlacingShips()
+    showPlacingShips();
   });
 
   playBtn.addEventListener('click', () => {
     if (game.playerBoard.allShipsPlaced(game.playerBoard.board)) modal.remove();
   });
 
-  displayGameboard(game.playerBoard.board, modalBoard, true);
+  showGameboard(game.playerBoard.board, modalBoard, true);
 };
 
-const displayPlacingShips = (ship = ships[0]) => {
+const showPlacingShips = (ship = ships[0]) => {
   const modalBoardPositions = document.querySelectorAll(
     '.modal-place-ships-board.pos'
   );
@@ -55,7 +55,6 @@ const displayPlacingShips = (ship = ships[0]) => {
   const nextPositions = [];
 
   let length = ship.length;
-  let shipIndex = 0;
 
   modalBoardPositions.forEach((position) => {
     position.addEventListener('mouseover', (e) => {
@@ -82,40 +81,45 @@ const displayPlacingShips = (ship = ships[0]) => {
 
   modalBoardPositions.forEach((position) => {
     position.addEventListener('mouseout', (e) => {
-      if (e.target.classList.contains('occupied')) return
+      if (e.target.classList.contains('occupied')) return;
       e.target.style.backgroundColor = '#269ad7';
       nextPositions.forEach((nextPos) => {
-        if (nextPos.classList.contains('occupied')) return
+        if (nextPos.classList.contains('occupied')) return;
         nextPos.style.backgroundColor = '#269ad7';
       });
     });
     nextPositions.length = 0;
   });
 
-  modalBoardPositions.forEach((position) => {
-    position.addEventListener('click', (e) => {
-      let coordsStr = e.target.dataset.coords;
-      let coords = JSON.parse(coordsStr);
-      let axis = rotateBtn.classList.contains('horizontal') ? 'horizontal' : 'vertical';
-      game.playerBoard.placeShip(ships[shipIndex], coords, axis)
-      updatePlayerDisplayBoards();
-      console.log(shipIndex)
-      shipIndex += 1;
-      console.log(shipIndex)
-      displayPlacingShips(ships[shipIndex])
-      console.log(game.playerBoard.board)
-    })
-  });
+  modalBoardPositions.forEach((position) =>
+    position.addEventListener('click', playerPlacingShips)
+  );
+};
+
+const playerPlacingShips = (e) => {
+  const rotateBtn = document.querySelector('.modal-place-ships-axis-btn');
+
+  let coordsStr = e.target.dataset.coords;
+  let coords = JSON.parse(coordsStr);
+  let axis = rotateBtn.classList.contains('horizontal')
+    ? 'horizontal'
+    : 'vertical';
+  let index = increment();
+
+  game.playerBoard.placeShip(ships[index], coords, axis);
+  updatePlayerDisplayBoards();
+  showPlacingShips(ships[index + 1]);
+  console.log(game.playerBoard.board);
 };
 
 const updatePlayerDisplayBoards = () => {
   const playerModalBoard = document.querySelector('.modal-place-ships-board');
   const playerBoardDiv = document.querySelector('.player1-board');
-  displayGameboard(game.playerBoard.board, playerModalBoard, true);
-  displayGameboard(game.playerBoard.board, playerBoardDiv, true);
+  showGameboard(game.playerBoard.board, playerModalBoard, true);
+  showGameboard(game.playerBoard.board, playerBoardDiv, true);
 };
 
-const displayGameboard = (board, boardDiv, shipsVisible) => {
+const showGameboard = (board, boardDiv, shipsVisible) => {
   // Reset board if one exists already
   if (boardDiv.hasChildNodes()) boardDiv.innerHTML = '';
 
@@ -133,7 +137,7 @@ const displayGameboard = (board, boardDiv, shipsVisible) => {
   }
 };
 
-const displayPlayerNames = ((player1 = 'Player', player2 = 'Computer') => {
+const showPlayerNames = ((player1 = 'Player', player2 = 'Computer') => {
   const player1Name = document.querySelector('.player1-name');
   const player2Name = document.querySelector('.player2-name');
   player1Name.textContent = player1;
@@ -156,7 +160,7 @@ const handleAttacks = (e) => {
   if (playerAttack.includes('already shot')) return;
   if (playerAttack.includes('Game Over')) {
     removeAttackEvents();
-    displayGameOver('Player');
+    showGameOver('Player');
     return;
   }
 
@@ -165,7 +169,7 @@ const handleAttacks = (e) => {
 
   if (computerAttack.includes('Game Over')) {
     removeAttackEvents();
-    displayGameOver('Computer');
+    showGameOver('Computer');
     return;
   }
   console.log(game.computerBoard.board);
@@ -189,7 +193,7 @@ const removeAttackEvents = () => {
   );
 };
 
-const displayGameOver = (winner) => {
+const showGameOver = (winner) => {
   const modal = document.querySelector('.modal-game-over');
   const modalTxt = document.querySelector('.modal-game-over-content-txt');
   const modalResetBtn = document.querySelector(
@@ -199,5 +203,12 @@ const displayGameOver = (winner) => {
   modalTxt.textContent = `${winner} wins!`;
   modalResetBtn.addEventListener('click', () => window.location.reload());
 };
+
+let increment = (function (n) {
+  return function () {
+    n += 1;
+    return n;
+  };
+})(-1);
 
 export default displayFlow;
