@@ -564,14 +564,14 @@ const displayFlow = () => {
   const player1BoardDiv = document.querySelector('.player1-board');
   const player2BoardDiv = document.querySelector('.player2-board');
 
-  displayPlacingBoard();
-  displayPlacingShips();
-  displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, player1BoardDiv, true);
-  displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.computerBoard.board, player2BoardDiv);
+  showPlacingBoard();
+  showPlacingShips();
+  showGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, player1BoardDiv, true);
+  showGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.computerBoard.board, player2BoardDiv);
   createEventListeners();
 };
 
-const displayPlacingBoard = () => {
+const showPlacingBoard = () => {
   const modal = document.querySelector('.modal-place-ships');
   const modalBoard = document.querySelector('.modal-place-ships-board');
   const rotateBtn = document.querySelector('.modal-place-ships-axis-btn');
@@ -597,17 +597,17 @@ const displayPlacingBoard = () => {
   clearBtn.addEventListener('click', () => {
     _game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.resetBoard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board);
     updatePlayerDisplayBoards();
-    displayPlacingShips()
+    showPlacingShips();
   });
 
   playBtn.addEventListener('click', () => {
     if (_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.allShipsPlaced(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board)) modal.remove();
   });
 
-  displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, modalBoard, true);
+  showGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, modalBoard, true);
 };
 
-const displayPlacingShips = (ship = _game__WEBPACK_IMPORTED_MODULE_0__.ships[0]) => {
+const showPlacingShips = (ship = _game__WEBPACK_IMPORTED_MODULE_0__.ships[0]) => {
   const modalBoardPositions = document.querySelectorAll(
     '.modal-place-ships-board.pos'
   );
@@ -615,7 +615,6 @@ const displayPlacingShips = (ship = _game__WEBPACK_IMPORTED_MODULE_0__.ships[0])
   const nextPositions = [];
 
   let length = ship.length;
-  let shipIndex = 0;
 
   modalBoardPositions.forEach((position) => {
     position.addEventListener('mouseover', (e) => {
@@ -642,40 +641,45 @@ const displayPlacingShips = (ship = _game__WEBPACK_IMPORTED_MODULE_0__.ships[0])
 
   modalBoardPositions.forEach((position) => {
     position.addEventListener('mouseout', (e) => {
-      if (e.target.classList.contains('occupied')) return
+      if (e.target.classList.contains('occupied')) return;
       e.target.style.backgroundColor = '#269ad7';
       nextPositions.forEach((nextPos) => {
-        if (nextPos.classList.contains('occupied')) return
+        if (nextPos.classList.contains('occupied')) return;
         nextPos.style.backgroundColor = '#269ad7';
       });
     });
     nextPositions.length = 0;
   });
 
-  modalBoardPositions.forEach((position) => {
-    position.addEventListener('click', (e) => {
-      let coordsStr = e.target.dataset.coords;
-      let coords = JSON.parse(coordsStr);
-      let axis = rotateBtn.classList.contains('horizontal') ? 'horizontal' : 'vertical';
-      _game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.placeShip(_game__WEBPACK_IMPORTED_MODULE_0__.ships[shipIndex], coords, axis)
-      updatePlayerDisplayBoards();
-      console.log(shipIndex)
-      shipIndex += 1;
-      console.log(shipIndex)
-      displayPlacingShips(_game__WEBPACK_IMPORTED_MODULE_0__.ships[shipIndex])
-      console.log(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board)
-    })
-  });
+  modalBoardPositions.forEach((position) =>
+    position.addEventListener('click', playerPlacingShips)
+  );
+};
+
+const playerPlacingShips = (e) => {
+  const rotateBtn = document.querySelector('.modal-place-ships-axis-btn');
+
+  let coordsStr = e.target.dataset.coords;
+  let coords = JSON.parse(coordsStr);
+  let axis = rotateBtn.classList.contains('horizontal')
+    ? 'horizontal'
+    : 'vertical';
+  let index = increment();
+
+  _game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.placeShip(_game__WEBPACK_IMPORTED_MODULE_0__.ships[index], coords, axis);
+  updatePlayerDisplayBoards();
+  showPlacingShips(_game__WEBPACK_IMPORTED_MODULE_0__.ships[index + 1]);
+  console.log(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board);
 };
 
 const updatePlayerDisplayBoards = () => {
   const playerModalBoard = document.querySelector('.modal-place-ships-board');
   const playerBoardDiv = document.querySelector('.player1-board');
-  displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, playerModalBoard, true);
-  displayGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, playerBoardDiv, true);
+  showGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, playerModalBoard, true);
+  showGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, playerBoardDiv, true);
 };
 
-const displayGameboard = (board, boardDiv, shipsVisible) => {
+const showGameboard = (board, boardDiv, shipsVisible) => {
   // Reset board if one exists already
   if (boardDiv.hasChildNodes()) boardDiv.innerHTML = '';
 
@@ -693,7 +697,7 @@ const displayGameboard = (board, boardDiv, shipsVisible) => {
   }
 };
 
-const displayPlayerNames = ((player1 = 'Player', player2 = 'Computer') => {
+const showPlayerNames = ((player1 = 'Player', player2 = 'Computer') => {
   const player1Name = document.querySelector('.player1-name');
   const player2Name = document.querySelector('.player2-name');
   player1Name.textContent = player1;
@@ -716,7 +720,7 @@ const handleAttacks = (e) => {
   if (playerAttack.includes('already shot')) return;
   if (playerAttack.includes('Game Over')) {
     removeAttackEvents();
-    displayGameOver('Player');
+    showGameOver('Player');
     return;
   }
 
@@ -725,7 +729,7 @@ const handleAttacks = (e) => {
 
   if (computerAttack.includes('Game Over')) {
     removeAttackEvents();
-    displayGameOver('Computer');
+    showGameOver('Computer');
     return;
   }
   console.log(_game__WEBPACK_IMPORTED_MODULE_0__.game.computerBoard.board);
@@ -749,7 +753,7 @@ const removeAttackEvents = () => {
   );
 };
 
-const displayGameOver = (winner) => {
+const showGameOver = (winner) => {
   const modal = document.querySelector('.modal-game-over');
   const modalTxt = document.querySelector('.modal-game-over-content-txt');
   const modalResetBtn = document.querySelector(
@@ -759,6 +763,13 @@ const displayGameOver = (winner) => {
   modalTxt.textContent = `${winner} wins!`;
   modalResetBtn.addEventListener('click', () => window.location.reload());
 };
+
+let increment = (function (n) {
+  return function () {
+    n += 1;
+    return n;
+  };
+})(-1);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displayFlow);
 
