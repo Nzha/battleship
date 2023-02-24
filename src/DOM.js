@@ -97,6 +97,7 @@ const showPlacingShips = (ship = ships[0]) => {
 };
 
 const playerPlacingShips = (e) => {
+  const modal = document.querySelector('.modal-place-ships');
   const rotateBtn = document.querySelector('.modal-place-ships-axis-btn');
 
   let coordsStr = e.target.dataset.coords;
@@ -108,6 +109,9 @@ const playerPlacingShips = (e) => {
 
   game.playerBoard.placeShip(ships[index], coords, axis);
   updatePlayerDisplayBoards();
+
+  if (index === 4) modal.remove();
+
   showPlacingShips(ships[index + 1]);
   console.log(game.playerBoard.board);
 };

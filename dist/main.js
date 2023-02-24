@@ -657,6 +657,7 @@ const showPlacingShips = (ship = _game__WEBPACK_IMPORTED_MODULE_0__.ships[0]) =>
 };
 
 const playerPlacingShips = (e) => {
+  const modal = document.querySelector('.modal-place-ships');
   const rotateBtn = document.querySelector('.modal-place-ships-axis-btn');
 
   let coordsStr = e.target.dataset.coords;
@@ -668,6 +669,9 @@ const playerPlacingShips = (e) => {
 
   _game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.placeShip(_game__WEBPACK_IMPORTED_MODULE_0__.ships[index], coords, axis);
   updatePlayerDisplayBoards();
+
+  if (index === 4) modal.remove();
+
   showPlacingShips(_game__WEBPACK_IMPORTED_MODULE_0__.ships[index + 1]);
   console.log(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board);
 };
