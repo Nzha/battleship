@@ -575,10 +575,11 @@ const displayFlow = () => {
 
 const showPlacingBoard = () => {
   const modal = document.querySelector('.modal-place-ships');
-  const modalBoard = document.querySelector('.modal-place-ships-board');
+  const placeShipText = document.querySelector('.modal-place-ships-txt');
   const rotateBtn = document.querySelector('.modal-place-ships-axis-btn');
   const randBtn = document.querySelector('.modal-place-ships-random-btn');
   const clearBtn = document.querySelector('.modal-place-ships-clear-btn');
+  const modalBoard = document.querySelector('.modal-place-ships-board');
   const playBtn = document.querySelector('.modal-place-ships-play-btn');
   modal.style.display = 'block';
 
@@ -594,12 +595,14 @@ const showPlacingBoard = () => {
     _game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.resetBoard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board);
     _game__WEBPACK_IMPORTED_MODULE_0__.game.randPlayerShips();
     updatePlayerDisplayBoards();
+    placeShipText.textContent = 'All ships placed';
   });
 
   clearBtn.addEventListener('click', () => {
     _game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.resetBoard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board);
     updatePlayerDisplayBoards();
     shipIndex = 0;
+    placeShipText.textContent = 'Place your Carrier';
     showPlacingShips();
   });
 
@@ -661,15 +664,19 @@ const showPlacingShips = (ship = _game__WEBPACK_IMPORTED_MODULE_0__.ships[0]) =>
 
 const playerPlacingShips = (e) => {
   const modal = document.querySelector('.modal-place-ships');
+  const placeShipText = document.querySelector('.modal-place-ships-txt');
   const rotateBtn = document.querySelector('.modal-place-ships-axis-btn');
-
-  let coordsStr = e.target.dataset.coords;
-  let coords = JSON.parse(coordsStr);
-  let axis = rotateBtn.classList.contains('horizontal')
+  const coordsStr = e.target.dataset.coords;
+  const coords = JSON.parse(coordsStr);
+  const axis = rotateBtn.classList.contains('horizontal')
     ? 'horizontal'
     : 'vertical';
+  const shipPlaced = _game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.placeShip(_game__WEBPACK_IMPORTED_MODULE_0__.ships[shipIndex], coords, axis);
+  const shipName = _game__WEBPACK_IMPORTED_MODULE_0__.ships[shipIndex + 1].name;
 
-  let shipPlaced = _game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.placeShip(_game__WEBPACK_IMPORTED_MODULE_0__.ships[shipIndex], coords, axis);
+  placeShipText.textContent = `Place your ${
+    shipName.charAt(0).toUpperCase() + shipName.slice(1, -1)
+  }`;
 
   if (shipPlaced !== 'Placement successful') return;
 
