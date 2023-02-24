@@ -1,5 +1,7 @@
 import { game, ships } from './game';
 
+let shipIndex = 0;
+
 const displayFlow = () => {
   const player1BoardDiv = document.querySelector('.player1-board');
   const player2BoardDiv = document.querySelector('.player2-board');
@@ -37,6 +39,7 @@ const showPlacingBoard = () => {
   clearBtn.addEventListener('click', () => {
     game.playerBoard.resetBoard(game.playerBoard.board);
     updatePlayerDisplayBoards();
+    shipIndex = 0;
     showPlacingShips();
   });
 
@@ -105,14 +108,20 @@ const playerPlacingShips = (e) => {
   let axis = rotateBtn.classList.contains('horizontal')
     ? 'horizontal'
     : 'vertical';
-  let index = increment();
 
-  game.playerBoard.placeShip(ships[index], coords, axis);
+  let shipPlaced = game.playerBoard.placeShip(ships[shipIndex], coords, axis);
+
+  if (shipPlaced !== 'Placement successful') return;
+
   updatePlayerDisplayBoards();
 
-  if (index === 4) modal.remove();
+  if (shipIndex === 4) {
+    modal.remove();
+    return;
+  }
 
-  showPlacingShips(ships[index + 1]);
+  shipIndex += 1;
+  showPlacingShips(ships[shipIndex]);
   console.log(game.playerBoard.board);
 };
 
@@ -207,12 +216,5 @@ const showGameOver = (winner) => {
   modalTxt.textContent = `${winner} wins!`;
   modalResetBtn.addEventListener('click', () => window.location.reload());
 };
-
-let increment = (function (n) {
-  return function () {
-    n += 1;
-    return n;
-  };
-})(-1);
 
 export default displayFlow;
