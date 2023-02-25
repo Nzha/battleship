@@ -1087,7 +1087,7 @@ const Ship = (name, length) => {
   \************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "73b33fcedee69c446c47.jpg";
+module.exports = __webpack_require__.p + "510d29cf61dc071c6041.jpg";
 
 /***/ })
 
