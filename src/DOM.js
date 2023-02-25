@@ -62,6 +62,7 @@ const showPlacingShips = (ship = ships[0]) => {
 
   let length = ship.length;
 
+  // Change color when mouse is over position
   modalBoardPositions.forEach((position) => {
     position.addEventListener('mouseover', (e) => {
       const x = Number(e.target.dataset.coords[1]);
@@ -85,6 +86,7 @@ const showPlacingShips = (ship = ships[0]) => {
     });
   });
 
+  // Reset color when mouse has left position
   modalBoardPositions.forEach((position) => {
     position.addEventListener('mouseout', (e) => {
       if (e.target.classList.contains('occupied')) return;
@@ -97,6 +99,7 @@ const showPlacingShips = (ship = ships[0]) => {
     nextPositions.length = 0;
   });
 
+  // Place ship on player click
   modalBoardPositions.forEach((position) =>
     position.addEventListener('click', playerPlacingShips)
   );
@@ -114,11 +117,11 @@ const playerPlacingShips = (e) => {
   const shipPlaced = game.playerBoard.placeShip(ships[shipIndex], coords, axis);
   const shipName = ships[shipIndex + 1].name;
 
+  if (shipPlaced !== 'Placement successful') return;
+
   placeShipText.textContent = `Place your ${
     shipName.charAt(0).toUpperCase() + shipName.slice(1, -1)
   }`;
-
-  if (shipPlaced !== 'Placement successful') return;
 
   updatePlayerDisplayBoards();
 
