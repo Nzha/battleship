@@ -570,7 +570,7 @@ const displayFlow = () => {
   showPlacingShips();
   showGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, player1BoardDiv, true);
   showGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.computerBoard.board, player2BoardDiv);
-  createEventListeners();
+  addAttackEvents();
 };
 
 const showPlacingBoard = () => {
@@ -673,24 +673,26 @@ const placeShipOnClick = (e) => {
   const axis = rotateBtn.classList.contains('horizontal')
     ? 'horizontal'
     : 'vertical';
-  const shipPlaced = _game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.placeShip(_game__WEBPACK_IMPORTED_MODULE_0__.ships[shipIndex], coords, axis);
-  const shipName = _game__WEBPACK_IMPORTED_MODULE_0__.ships[shipIndex + 1].name;
+  const placementStatus = _game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.placeShip(
+    _game__WEBPACK_IMPORTED_MODULE_0__.ships[shipIndex],
+    coords,
+    axis
+  );
 
-  if (shipPlaced !== 'Placement successful') return;
+  if (placementStatus === 'Placement successful') {
+    const nextShipName = _game__WEBPACK_IMPORTED_MODULE_0__.ships[shipIndex + 1].name;
+    placeShipText.textContent = `Place your ${
+      nextShipName.charAt(0).toUpperCase() + nextShipName.slice(1, -1)
+    }`;
+    updatePlayerDisplayBoards();
 
-  placeShipText.textContent = `Place your ${
-    shipName.charAt(0).toUpperCase() + shipName.slice(1, -1)
-  }`;
-
-  updatePlayerDisplayBoards();
-
-  if (shipIndex === 4) {
-    modal.remove();
-    return;
+    if (shipIndex === 4) {
+      modal.remove();
+    } else {
+      shipIndex += 1;
+      showPlacingShips(_game__WEBPACK_IMPORTED_MODULE_0__.ships[shipIndex]);
+    }
   }
-
-  shipIndex += 1;
-  showPlacingShips(_game__WEBPACK_IMPORTED_MODULE_0__.ships[shipIndex]);
   console.log(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board);
 };
 
@@ -725,13 +727,6 @@ const showPlayerNames = ((player1 = 'Player', player2 = 'Computer') => {
   player1Name.textContent = player1;
   player2Name.textContent = player2;
 })();
-
-const createEventListeners = () => {
-  const computerPos = document.querySelectorAll('.player2-board.pos');
-  computerPos.forEach((computerPos) =>
-    computerPos.addEventListener('click', handleAttacks)
-  );
-};
 
 const handleAttacks = (e) => {
   // Use JSON.parse to convert '[x, y]' from string to array
@@ -768,10 +763,17 @@ const displayAttack = (e, attack) => {
   target.style.backgroundColor = color;
 };
 
+const addAttackEvents = () => {
+  const computerPositions = document.querySelectorAll('.player2-board.pos');
+  computerPositions.forEach((computerPosition) =>
+  computerPosition.addEventListener('click', handleAttacks)
+  );
+};
+
 const removeAttackEvents = () => {
   const computerPositions = document.querySelectorAll('.player2-board.pos');
   computerPositions.forEach((computerPosition) =>
-    computerPosition.removeEventListener('click', handleAttacks)
+  computerPosition.removeEventListener('click', handleAttacks)
   );
 };
 
