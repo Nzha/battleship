@@ -192,3 +192,13 @@ header {
 footer {
   grid-area: footer;
 }
+
+footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 0;
+  text-decoration: none;
+  color: black;
+}
