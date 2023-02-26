@@ -581,35 +581,40 @@ const showPlacingBoard = () => {
   const clearBtn = document.querySelector('.modal-place-ships-clear-btn');
   const modalBoard = document.querySelector('.modal-place-ships-board');
   const playBtn = document.querySelector('.modal-place-ships-play-btn');
-  modal.style.display = 'block';
 
-  rotateBtn.addEventListener('click', () => {
+  const rotateHandler = () => {
     const axis = rotateBtn.classList.contains('horizontal')
       ? 'vertical'
       : 'horizontal';
     rotateBtn.classList.remove('horizontal', 'vertical');
     rotateBtn.classList.add(axis);
-  });
+  };
 
-  randBtn.addEventListener('click', () => {
+  const randomHandler = () => {
     _game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.resetBoard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board);
     _game__WEBPACK_IMPORTED_MODULE_0__.game.randPlayerShips();
     updatePlayerDisplayBoards();
     placeShipText.textContent = 'All ships placed';
-  });
+  };
 
-  clearBtn.addEventListener('click', () => {
+  const clearHandler = () => {
     _game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.resetBoard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board);
     updatePlayerDisplayBoards();
     shipIndex = 0;
     placeShipText.textContent = 'Place your Carrier';
     showPlacingShips();
-  });
+  };
 
-  playBtn.addEventListener('click', () => {
+  const playHandler = () => {
     if (_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.allShipsPlaced(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board)) modal.remove();
-  });
+  };
 
+  rotateBtn.addEventListener('click', rotateHandler);
+  randBtn.addEventListener('click', randomHandler);
+  clearBtn.addEventListener('click', clearHandler);
+  playBtn.addEventListener('click', playHandler);
+
+  modal.style.display = 'block';
   showGameboard(_game__WEBPACK_IMPORTED_MODULE_0__.game.playerBoard.board, modalBoard, true);
 };
 
@@ -619,53 +624,47 @@ const showPlacingShips = (ship = _game__WEBPACK_IMPORTED_MODULE_0__.ships[0]) =>
   );
   const rotateBtn = document.querySelector('.modal-place-ships-axis-btn');
   const nextPositions = [];
+  const length = ship.length;
 
-  let length = ship.length;
+  const highlightPositions = (e) => {
+    const x = Number(e.target.dataset.coords[1]);
+    const y = Number(e.target.dataset.coords[3]);
+    const target = document.querySelector(
+      `[data-coords="${e.target.dataset.coords}"]`
+    );
 
-  // Change color when mouse is over position
-  modalBoardPositions.forEach((position) => {
-    position.addEventListener('mouseover', (e) => {
-      const x = Number(e.target.dataset.coords[1]);
-      const y = Number(e.target.dataset.coords[3]);
-      const target = document.querySelector(
-        `[data-coords="${e.target.dataset.coords}"]`
-      );
+    target.style.backgroundColor = '#935620';
 
-      target.style.backgroundColor = '#935620';
-
-      for (let i = 1; i < length; i++) {
-        const nextX = rotateBtn.classList.contains('horizontal') ? x : x + i;
-        const nextY = rotateBtn.classList.contains('vertical') ? y : y + i;
-        const coords = JSON.stringify([nextX, nextY]);
-        const nextPos = document.querySelector(`[data-coords="${coords}"]`);
-        if (nextPos) {
-          nextPositions.push(nextPos);
-          nextPos.style.backgroundColor = '#935620';
-        }
+    for (let i = 1; i < length; i++) {
+      const nextX = rotateBtn.classList.contains('horizontal') ? x : x + i;
+      const nextY = rotateBtn.classList.contains('vertical') ? y : y + i;
+      const coords = JSON.stringify([nextX, nextY]);
+      const nextPos = document.querySelector(`[data-coords="${coords}"]`);
+      if (nextPos) {
+        nextPositions.push(nextPos);
+        nextPos.style.backgroundColor = '#935620';
       }
-    });
-  });
+    }
+  };
 
-  // Reset color when mouse has left position
-  modalBoardPositions.forEach((position) => {
-    position.addEventListener('mouseout', (e) => {
-      if (e.target.classList.contains('occupied')) return;
-      e.target.style.backgroundColor = '#269ad7';
-      nextPositions.forEach((nextPos) => {
-        if (nextPos.classList.contains('occupied')) return;
-        nextPos.style.backgroundColor = '#269ad7';
-      });
+  const resetHighlight = (e) => {
+    if (e.target.classList.contains('occupied')) return;
+    e.target.style.backgroundColor = '#269ad7';
+    nextPositions.forEach((nextPos) => {
+      if (nextPos.classList.contains('occupied')) return;
+      nextPos.style.backgroundColor = '#269ad7';
     });
     nextPositions.length = 0;
-  });
+  };
 
-  // Place ship on player click
-  modalBoardPositions.forEach((position) =>
-    position.addEventListener('click', playerPlacingShips)
-  );
+  modalBoardPositions.forEach((position) => {
+    position.addEventListener('mouseover', highlightPositions);
+    position.addEventListener('mouseout', resetHighlight);
+    position.addEventListener('click', placeShipOnClick);
+  });
 };
 
-const playerPlacingShips = (e) => {
+const placeShipOnClick = (e) => {
   const modal = document.querySelector('.modal-place-ships');
   const placeShipText = document.querySelector('.modal-place-ships-txt');
   const rotateBtn = document.querySelector('.modal-place-ships-axis-btn');
