@@ -10,7 +10,7 @@ const displayFlow = () => {
   showPlacingShips();
   showGameboard(game.playerBoard.board, player1BoardDiv, true);
   showGameboard(game.computerBoard.board, player2BoardDiv);
-  createEventListeners();
+  addAttackEvents();
 };
 
 const showPlacingBoard = () => {
@@ -113,24 +113,26 @@ const placeShipOnClick = (e) => {
   const axis = rotateBtn.classList.contains('horizontal')
     ? 'horizontal'
     : 'vertical';
-  const shipPlaced = game.playerBoard.placeShip(ships[shipIndex], coords, axis);
-  const shipName = ships[shipIndex + 1].name;
+  const placementStatus = game.playerBoard.placeShip(
+    ships[shipIndex],
+    coords,
+    axis
+  );
 
-  if (shipPlaced !== 'Placement successful') return;
+  if (placementStatus === 'Placement successful') {
+    const nextShipName = ships[shipIndex + 1].name;
+    placeShipText.textContent = `Place your ${
+      nextShipName.charAt(0).toUpperCase() + nextShipName.slice(1, -1)
+    }`;
+    updatePlayerDisplayBoards();
 
-  placeShipText.textContent = `Place your ${
-    shipName.charAt(0).toUpperCase() + shipName.slice(1, -1)
-  }`;
-
-  updatePlayerDisplayBoards();
-
-  if (shipIndex === 4) {
-    modal.remove();
-    return;
+    if (shipIndex === 4) {
+      modal.remove();
+    } else {
+      shipIndex += 1;
+      showPlacingShips(ships[shipIndex]);
+    }
   }
-
-  shipIndex += 1;
-  showPlacingShips(ships[shipIndex]);
   console.log(game.playerBoard.board);
 };
 
@@ -165,13 +167,6 @@ const showPlayerNames = ((player1 = 'Player', player2 = 'Computer') => {
   player1Name.textContent = player1;
   player2Name.textContent = player2;
 })();
-
-const createEventListeners = () => {
-  const computerPos = document.querySelectorAll('.player2-board.pos');
-  computerPos.forEach((computerPos) =>
-    computerPos.addEventListener('click', handleAttacks)
-  );
-};
 
 const handleAttacks = (e) => {
   // Use JSON.parse to convert '[x, y]' from string to array
@@ -208,10 +203,17 @@ const displayAttack = (e, attack) => {
   target.style.backgroundColor = color;
 };
 
+const addAttackEvents = () => {
+  const computerPositions = document.querySelectorAll('.player2-board.pos');
+  computerPositions.forEach((computerPosition) =>
+  computerPosition.addEventListener('click', handleAttacks)
+  );
+};
+
 const removeAttackEvents = () => {
   const computerPositions = document.querySelectorAll('.player2-board.pos');
   computerPositions.forEach((computerPosition) =>
-    computerPosition.removeEventListener('click', handleAttacks)
+  computerPosition.removeEventListener('click', handleAttacks)
   );
 };
 
